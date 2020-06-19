@@ -4,7 +4,7 @@ export default class ListarOcorrencia extends Component {
 
     render() {
         return(
-            <h1>oloco</h1>
+            <h1>Listar Ocorrências</h1>
         );
     }
 

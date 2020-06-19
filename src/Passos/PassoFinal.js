@@ -37,11 +37,12 @@ export default class PassoFinal extends Component {
                     
                 </div>
                 <br />
-                <button className="waves-effect waves-light btn red darken-1 col s3 offset-s2">Editar</button>
-                <button onClick={this.salvar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2">
-                    Salvar
-                </button>
-
+                <form className="col s10">
+                    <div className="row">
+                <button className="waves-effect waves-light btn red darken-1 col s3 offset-s2 espaco">Editar</button>
+                <button onClick={this.salvar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Salvar</button>
+                </div>
+                </form>
             </div>
         )
     }

@@ -103,64 +103,82 @@ export default class Main extends Component {
 
         if(step === 1) {
             return(
+                <div>
+                <p className="titulo"> Passo {step} de 6:</p>
                 <PrimeiroPasso
                     handleChange = {this.handleChange}
                     nextStep = {this.nextStep}
                     values = {values}
                 />
+                </div>
             )
         }
 
         if(step === 2) {
             return(
+                <div>
+                <p className="titulo"> Passo {step} de 6:</p>
                 <SegundoPasso
                     handleChange = {this.handleChange}
                     nextStep = {this.nextStep}
                     prevStep = {this.prevStep}
                     values = {values}
                 />
+                </div>
             )
         }
 
         if(step === 3) {
             return(
+                <div>
+                <p className="titulo"> Passo {step} de 6:</p>
                 <TerceiroPasso 
                     handleChange = {this.handleChange}
                     nextStep = {this.nextStep}
                     prevStep = {this.prevStep}
                     values = {values}
                 />
+                </div>
             )
         }
 
         if(step === 4) {
             return(
+                <div>
+                <p className="titulo"> Passo {step} de 6:</p>
                 <QuartoPasso 
                     nextStep = {this.nextStep}
                     prevStep = {this.prevStep}
                     handleChange = {this.handleChange}
                     values = {values}
                 />
+                </div>
             )
         }
 
         if(step === 5) {
             return(
+                <div>
+                <p className="titulo"> Passo {step} de 6:</p>
                 <QuintoPasso 
                     nextStep = {this.nextStep}
                     prevStep = {this.prevStep}
                     handleChange = {this.handleChange}
                     values = {values}
                 />
+                </div>
             )
         }
 
         if(step === 6) {
             return(
+                <div>
+                <p className="titulo"> Passo {step} de 6:</p>
                 <PassoFinal 
                     prevStep = {this.prevStep}
                     values = {values}
                 />
+                </div>
             )
         }
 
@@ -186,6 +204,7 @@ export default class Main extends Component {
                 <ListarOcorrencias />
             )
         }
+
     }
 
     render(){
@@ -193,7 +212,6 @@ export default class Main extends Component {
 
         return(
             <div>
-                <p className="titulo"> Passo {step} de 6:</p>
                 {this.showStep()}
             </div>   
         )
