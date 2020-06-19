@@ -3,6 +3,21 @@ import Logo from './img/logo-gcm.jpg';
 
 export default class TelaInicial extends Component {
 
+    gerarOcorrencia = e => {
+        e.preventDefault();
+        this.props.gerarOcorrencia();
+    }
+
+    buscarOcorrencia = e => {
+        e.preventDefault();
+        this.props.buscarOcorrencia();
+    }
+
+    listarOcorrencias = e => {
+        e.preventDefault();
+        this.props.listarOcorrencias();
+    }
+
     render() {
         return (
             <div className="container">
@@ -11,22 +26,22 @@ export default class TelaInicial extends Component {
                 <div className="col s10">
                     <div className="row">
                         <div className="espaco">
-                            <button className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">add_box</i>Registrar Ocorrência</button>
+                            <button onClick={this.gerarOcorrencia} className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">add_box</i>Registrar Ocorrência</button>
                         </div>
                     </div>
                     <div className="row">
                         <div className="espaco">
-                            <button className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">search</i>Buscar Ocorrência</button>
+                            <button onClick={this.buscarOcorrencia} className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">search</i>Buscar Ocorrência</button>
                         </div>
                     </div>
                     <div className="row">
                         <div className="espaco">
-                            <button className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">view_list</i>Listar Ocorrências</button>
+                            <button onClick={this.listarOcorrencias} className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">view_list</i>Listar Ocorrências</button>
                         </div>
                     </div>
                     <div className="row">
                         <div className="espaco">
-                            <button className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">assignment</i>Gerar Relatório</button>
+                            <button  className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">assignment</i>Gerar Relatório</button>
                         </div>
                     </div>
                 </div>

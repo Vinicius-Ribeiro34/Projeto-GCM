@@ -50,7 +50,7 @@ export default class AdicionarVeiculo extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.placa}
                                 />
-                                <label htmlFor="natureza">Placa</label>
+                                <label htmlFor="placa">Placa</label>
                             </div>
                         </div>
                         <div className="row">
@@ -63,7 +63,7 @@ export default class AdicionarVeiculo extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.modelo}
                                 />
-                                <label htmlFor="codigo">Modelo</label>
+                                <label htmlFor="modelo">Modelo</label>
                             </div>
                         </div>
                         <div className="row">
@@ -76,7 +76,7 @@ export default class AdicionarVeiculo extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.ano}
                                 />
-                                <label htmlFor="local">Ano</label>
+                                <label htmlFor="ano">Ano</label>
                             </div>
                         </div>
                         <div className="row">
@@ -89,7 +89,7 @@ export default class AdicionarVeiculo extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.cor}
                                 />
-                                <label htmlFor="local">Cor</label>
+                                <label htmlFor="cor">Cor</label>
                             </div>
                         </div>
                         <div className="row">
@@ -102,7 +102,7 @@ export default class AdicionarVeiculo extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.codRenavam}
                                 />
-                                <label htmlFor="local">Código Renavam</label>
+                                <label htmlFor="codigoRenavam">Código Renavam</label>
                             </div>
                         </div>
                         <div className="row">
@@ -115,7 +115,7 @@ export default class AdicionarVeiculo extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.dano}
                                 />
-                                <label htmlFor="local">Dano</label>
+                                <label htmlFor="dano">Dano</label>
                             </div>
                         </div>
                         <div className="row">

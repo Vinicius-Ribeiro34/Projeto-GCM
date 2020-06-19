@@ -5,11 +5,14 @@ import TerceiroPasso from './Passos/TerceiroPasso'
 import QuartoPasso from './Passos/QuartoPasso'
 import QuintoPasso from './Passos/QuintoPasso'
 import PassoFinal from './Passos/PassoFinal'
+import TelaInicial from './TelaInicial'
+import BuscarOcorrencia from './BuscarOcorrencia'
+import ListarOcorrencias from './ListarOcorrencias'
 
 export default class Main extends Component {
 
         state = {
-            step: 1,
+            step: 7,
             
             //step - 1
             numeroDaOcorrencia: '',
@@ -43,6 +46,27 @@ export default class Main extends Component {
     handleChange = input => e =>{
         this.setState({
             [input]: e.target.value
+        })
+    }
+
+    gerarOcorrencia = () => {
+
+        this.setState({
+            step : 1
+        })
+    }
+
+    buscarOcorrencia = () => {
+
+        this.setState({
+            step : 8
+        })
+    }
+
+    listarOcorrencias = () => {
+
+        this.setState({
+            step : 9
         })
     }
 
@@ -137,6 +161,29 @@ export default class Main extends Component {
                     prevStep = {this.prevStep}
                     values = {values}
                 />
+            )
+        }
+
+        if(step === 7) {
+            return (
+                <TelaInicial 
+                gerarOcorrencia = {this.gerarOcorrencia}
+                buscarOcorrencia = {this.buscarOcorrencia}
+                listarOcorrencias = {this.listarOcorrencias}
+                values = {values}
+                 />
+            )
+        }
+
+        if(step === 8) {
+            return(
+                <BuscarOcorrencia />
+            )
+        }
+
+        if(step === 9) {
+            return(
+                <ListarOcorrencias />
             )
         }
     }
