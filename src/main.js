@@ -208,7 +208,6 @@ export default class Main extends Component {
     }
 
     render(){
-        const {step} = this.state;
 
         return(
             <div>
