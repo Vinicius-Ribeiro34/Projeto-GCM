@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import {add, get} from '../services/ocorrencia'
 import Table from '../Table'
 
 export default class PassoFinal extends Component {
     state = {
-        dados: []
+        ocorrencia: {}
     }
 
     back = e => {
@@ -11,14 +12,23 @@ export default class PassoFinal extends Component {
         this.props.prevStep();
     }
 
-    salvar = e => {
+    salvar = (e) => {
         e.preventDefault()
+        add(this.props.values)
+        console.log(this.props.values)
+    }
 
-        this.setState({
-            dados: [...this.state.dados, this.props.values]
+    testeGet() {
+
+        get((ocorrencia) => {
+
+            this.setState({
+                ocorrencia: ocorrencia
+            })
         })
 
-        console.log(JSON.stringify(this.state.dados))
+        console.log(this.state.ocorrencia)
+
     }
 
     render() {
@@ -39,8 +49,8 @@ export default class PassoFinal extends Component {
                 <br />
                 <form className="col s10">
                     <div className="row">
-                <button className="waves-effect waves-light btn red darken-1 col s3 offset-s2 espaco">Editar</button>
-                <button onClick={this.salvar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Salvar</button>
+                <button onClick={this.back} className="waves-effect waves-light btn red darken-1 col s3 offset-s2 espaco">Voltar</button>
+                <button onClick={this.salvar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Concluir</button>
                 </div>
                 </form>
             </div>

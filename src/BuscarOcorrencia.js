@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
+import {get} from './services/ocorrencia';
 import axios from 'axios';
 
 export default class BuscarOcorrencia extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            ocorrencia: {}
+        }
+
+        this.testeGet = this.testeGet.bind(this)
+    }
 
     componentDidMount() {
         axios.get("https://gcm-mogi.herokuapp.com/boletins/1")
@@ -12,7 +22,21 @@ export default class BuscarOcorrencia extends Component {
         .catch(error => {
             console.log(error);
         })
+
+
     }
+
+    testeGet(e) {
+        e.preventDefault()
+        get((ocorrencia) => {
+            this.setState({
+                ocorrencia: ocorrencia
+            })
+
+            console.log(this.state.ocorrencia)
+        })  
+    }
+    
 
     render() {
 
@@ -25,7 +49,7 @@ export default class BuscarOcorrencia extends Component {
                             <input type="number" id="buscaId" />
                             <label htmlFor="buscaId">Digite o numero da ocorrência</label>
                         </div>
-                        <button className="waves-effect waves-light btn red darken-1"><i className="material-icons">search</i></button>
+                        <button onClick={this.testeGet} className="waves-effect waves-light btn red darken-1"><i className="material-icons">search</i></button>
                     </div>
                 </form>
             </div>
