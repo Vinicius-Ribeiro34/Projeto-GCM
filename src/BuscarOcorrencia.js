@@ -14,7 +14,7 @@ export default class BuscarOcorrencia extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://gcm-mogi.herokuapp.com/boletins/1")
+        axios.get("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/1")
         .then(res => {
             const dados = res.data;
             console.log(dados);
