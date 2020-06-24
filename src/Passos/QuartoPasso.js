@@ -46,9 +46,8 @@ export default class QuartoPasso extends Component {
                             {this.state.show2 && <button onClick={this.adicionarEnvolvido} className="waves-effect waves-light btn-large grey App"><i className="material-icons left large">add</i>Adicionar Envolvido</button>}
                         </div>
                         <br/>
-                        {this.state.show && <AdicionarEnvolvido handleChange={handleChange} values={values} />}
+                        {this.state.show && <AdicionarEnvolvido adicionarEnvolvido={this.adicionarEnvolvido} handleChange={handleChange} values={values} />}
                         <br/>
-                        {this.state.show && <button onClick={this.adicionarEnvolvido} className="waves-effect waves-light btn-large blue App">Continuar</button>}
                     </div>
                     <form className="col s10">
                         <div className="row">

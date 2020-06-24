@@ -17,7 +17,7 @@ export default class TableEnvolvidos extends Component {
                                         <td>Condição da Parte:</td>
                                         <td><strong>{e.condicaoDaParte}</strong></td>
                                         <td>Conduzido:</td>
-                                        <td><strong>{e.conduzido}</strong></td>
+                                        <td><strong>{e.conduzido ? "Sim" : "Não"}</strong></td>
                                     </tr>
                                     <tr>
                                         <td>Data Nascimento:</td>
@@ -77,5 +77,4 @@ export default class TableEnvolvidos extends Component {
             </div>
         );
     }
-
 }

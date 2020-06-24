@@ -40,7 +40,6 @@ export default class Main extends Component {
 
             envolvidos: [],
             veiculos: [],
-      
         }
 
     handleChange = input => e =>{

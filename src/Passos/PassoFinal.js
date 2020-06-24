@@ -21,7 +21,6 @@ export default class PassoFinal extends Component {
     testeGet() {
 
         get((ocorrencia) => {
-
             this.setState({
                 ocorrencia: ocorrencia
             })

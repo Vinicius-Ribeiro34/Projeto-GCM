@@ -40,15 +40,26 @@ export default class AdicionarEnvolvido extends Component {
 
         this.cadastrar = this.cadastrar.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleList = this.handleList.bind(this)
     }
 
     componentDidMount() {
         M.AutoInit();
     }
 
+    handleList(event) {
+        const envolvido = {...this.state.envolvido}
+        envolvido.condicaoDaParte = event.target.value;
+
+        this.setState({
+            envolvido
+        })
+    }
+
     handleChange(event) {
         event.preventDefault()
-        const { name, value } = event.target
+        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+        const { name } = event.target
         const envolvido = this.state.envolvido
         const separadorIndex = name.indexOf('_')
         const inicial = name.substring(0, separadorIndex)
@@ -79,6 +90,8 @@ export default class AdicionarEnvolvido extends Component {
         const { values, handleChange } = this.props;
         values.envolvidos.push(this.state.envolvido);
         handleChange('envolvido')
+
+        this.props.adicionarEnvolvido();
     }
 
     render() {
@@ -113,18 +126,19 @@ export default class AdicionarEnvolvido extends Component {
                         </div>
                         <div className="row">
                             <div className="input-field col s5 offset-s1">
-                                <select defaultValue="DEFAULT">
-                                    <option value="DEFAULT" disabled>Selecione</option>
-                                    <option value="1">Vítima</option>
-                                    <option value="2">Indicado</option>
-                                    <option value="3">Sindicado</option>
-                                    <option value="4">Testemunha</option>
-                                    <option value="5">Condutor</option>
-                                    <option value="6">Proprietário</option>
-                                    <option value="7">Passageiro</option>
-                                    <option value="8">Pedestre</option>
-                                    <option value="9">Parte</option>
-                                    <option value="0">Indefinida</option>
+                                <select value={this.state.envolvido.condicaoDaParte} onChange={this.handleList}>
+                                    <option value="">Selecione</option>
+                                    <option value="VITIMA">Vítima</option>
+                                    <option value="AUTOR">Autor</option>
+                                    <option value="INDICIADO">Indiciado</option>
+                                    <option value="SINDICADO">Sindicado</option>
+                                    <option value="TESTEMUNHA">Testemunha</option>
+                                    <option value="CONDUTOR">Condutor</option>
+                                    <option value="PROPRIETARIO">Proprietário</option>
+                                    <option value="PASSAGEIRO">Passageiro</option>
+                                    <option value="PEDESTRE">Pedestre</option>
+                                    <option value="PARTE">Parte</option>
+                                    <option value="INDEFINIDA">Indefinida</option>  
                                 </select>
                                 <label>Condição da parte</label>
                             </div>

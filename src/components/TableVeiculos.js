@@ -30,7 +30,10 @@ export default class TableVeiculos extends Component {
                                         <td>Código Renavam:</td>
                                         <td><strong>{v.codRenavam}</strong></td>
                                         <td>Dano:</td>
-                                        <td><strong>{v.dano}</strong></td>
+                                        <td><strong>{v.dano === "PEQUENA_MONTA" ? "Pequeno" :
+                                                     v.dano === "MEDIA_MONTA" ? "Médio" :
+                                                     v.dano === "GRANDE_MONTA" ? "Grande" : ""}
+                                        </strong></td>
                                     </tr>
                                 </tbody>
                             </table>

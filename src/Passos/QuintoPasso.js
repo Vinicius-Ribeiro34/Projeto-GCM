@@ -26,12 +26,11 @@ export default class QuintoPasso extends Component {
             show: !this.state.show,
             show2: !this.state.show2
         })
-
     }
 
     render() {
 
-        const {values, handleChange} = this.props;
+        const {values} = this.props;
 
         return(
             <div className="container">
@@ -46,9 +45,8 @@ export default class QuintoPasso extends Component {
                             {this.state.show2 && <button onClick={this.adicionarVeiculo} className="waves-effect waves-light btn-large grey App"><i className="material-icons left large">add</i>Adicionar Veiculo</button>}
                         </div>
                         <br/>
-                        {this.state.show && <AdicionarVeiculo handleChange={handleChange} values={values} />}
+                        {this.state.show && <AdicionarVeiculo adicionarVeiculo={this.adicionarVeiculo} values={values} />}
                         <br/>
-                        {this.state.show && <button onClick={this.adicionarVeiculo} className="waves-effect waves-light btn-large blue App">Continuar</button>}
                     </div>
                     <form className="col s10">
                         <div className="row">
