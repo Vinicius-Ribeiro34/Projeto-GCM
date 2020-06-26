@@ -44,8 +44,20 @@ export default class AdicionarEnvolvido extends Component {
     }
 
     componentDidMount() {
-        M.AutoInit();
-    }
+       
+            M.AutoInit();
+
+            var options= {
+                data: {
+                    "Apple": null,
+                    "Microsoft": null,
+                    "Oi Otavio": null,
+                    "Salve Gabriel": null,
+                }
+            }
+            var elems = document.querySelectorAll('#enderecoBairro');
+            M.Autocomplete.init(elems, options);
+          }
 
     handleList(event) {
         const envolvido = {...this.state.envolvido}
@@ -330,7 +342,7 @@ export default class AdicionarEnvolvido extends Component {
                                     name='endereco_bairro'
                                     id="enderecoBairro"
                                     type="text"
-                                    className="validate"
+                                    className="validate no-autoinit autocomplete"
                                     onChange={this.handleChange}
                                     value={this.state.envolvido.endereco.bairro}
                                 />
@@ -362,7 +374,7 @@ export default class AdicionarEnvolvido extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s4 offset-s2" href="/">Cadastrar</button>
+                            <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s4 offset-s4" href="/">Cadastrar</button>
                         </div>
                     </form>
                 </div>
