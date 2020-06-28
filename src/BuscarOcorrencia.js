@@ -17,14 +17,10 @@ export default class BuscarOcorrencia extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.testeGet = this.testeGet.bind(this)
-        this.testePost = this.testePost.bind(this)
     }
 
     componentDidMount() {
-
-
         console.log(this.props.online ? 'Está online' : 'Não está')
-
     }
 
     testeGet = id => e => {
