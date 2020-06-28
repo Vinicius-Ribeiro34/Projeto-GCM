@@ -18,7 +18,6 @@ export default class BuscarOcorrencia extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.testeGet = this.testeGet.bind(this)
         this.testePost = this.testePost.bind(this)
-        this.getApi = this.getApi.bind(this)
     }
 
     componentDidMount() {
@@ -61,18 +60,6 @@ export default class BuscarOcorrencia extends Component {
         }
     }
 
-    getApi(e) {
-        e.preventDefault();
-        axios.get("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/")
-            .then(res => {
-                const dados = res.data;
-                console.log(dados);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
     handleChange(e) {
         e.preventDefault();
 
@@ -93,8 +80,14 @@ export default class BuscarOcorrencia extends Component {
         console.log(online)
     }
 
-    render() {
+    teste(e) {
+        e.preventDefault()
+        const validacao = this.props.online;
+        console.log(validacao);
+    }
 
+    render() {
+        
         return (
             <div className="container">
                 <p className="titulo">Buscar Ocorrência</p>
@@ -118,5 +111,4 @@ export default class BuscarOcorrencia extends Component {
             </div>
         );
     }
-
 }

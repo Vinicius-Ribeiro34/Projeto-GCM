@@ -391,7 +391,7 @@ export default class AdicionarEnvolvido extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s4 offset-s2" href="/">Cadastrar</button>
+                            <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s4 offset-s4" href="/">Cadastrar</button>
                         </div>
                     </form>
                 </div>

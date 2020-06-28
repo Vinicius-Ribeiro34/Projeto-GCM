@@ -72,9 +72,8 @@ export default class TerceiroPasso extends Component {
     }
 
     render() {
-
-        const { values, handleChange } = this.props;
-
+        const { values, handleChange } = this.props; 
+           
         return (
             <div className="container">
                 <div className="section">

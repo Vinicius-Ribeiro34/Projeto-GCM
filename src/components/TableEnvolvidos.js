@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 export default class TableEnvolvidos extends Component {
 
@@ -6,7 +6,7 @@ export default class TableEnvolvidos extends Component {
         const { values } = this.props;
 
         return (
-            <div>
+            <Fragment>
                 {values.envolvidos.map(function (e, index) {
                     return (
                         <div key={e.id}>
@@ -74,7 +74,7 @@ export default class TableEnvolvidos extends Component {
                         </div>
                     )
                 })}
-            </div>
+            </Fragment>
         );
     }
 }

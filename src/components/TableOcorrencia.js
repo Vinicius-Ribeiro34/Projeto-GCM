@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 
 export default class TableOcorrencia extends Component {
 
@@ -8,7 +8,7 @@ export default class TableOcorrencia extends Component {
         const { values } = this.props;
 
         return (
-            <div>
+            <Fragment>
                 <p className="titulo">Ocorrência: {values.numeroDaOcorrencia}</p>
                 <table className="striped centered">
                     <tbody>
@@ -62,7 +62,7 @@ export default class TableOcorrencia extends Component {
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </Fragment>
         );
     }
 }
