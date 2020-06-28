@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {add, get} from '../services/ocorrencia'
 import Table from '../Table'
+import axios from 'axios'
 
 export default class PassoFinal extends Component {
     state = {
@@ -14,8 +15,22 @@ export default class PassoFinal extends Component {
 
     salvar = (e) => {
         e.preventDefault()
-        add(this.props.values)
+        const online = this.props.online;
+        if(online === false) {
+            add(this.props.values)
+        } else {
+            this.testePost();
+        }
+       
         console.log(this.props.values)
+    }
+
+    testePost() {
+        axios.post("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins", this.props.values,
+            { headers: { 'Content-Type': 'application/json' } })
+            .then(response => {
+                console.log(response)
+            }).catch((error) => console.log(error.response));
     }
 
     testeGet() {
@@ -31,6 +46,7 @@ export default class PassoFinal extends Component {
     }
 
     render() {
+
         const { values } = this.props;
 
         return (

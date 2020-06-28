@@ -1,40 +1,98 @@
 import React, { Component } from 'react';
-import {get} from './services/ocorrencia';
+import { getOcorrenciaById } from './services/ocorrencia';
 import axios from 'axios';
+import Table from './Table'
+import PopUp from './components/PopUp'
 
 export default class BuscarOcorrencia extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.state = {
-            ocorrencia: {}
+            ocorrencia: {},
+            id: '',
+            show: 0,
+            show2: 1
         }
 
+        this.handleChange = this.handleChange.bind(this)
         this.testeGet = this.testeGet.bind(this)
+        this.testePost = this.testePost.bind(this)
+        this.getApi = this.getApi.bind(this)
     }
 
     componentDidMount() {
-        axios.get("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/1")
-        .then(res => {
-            const dados = res.data;
-            console.log(dados);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+
+
+        console.log(this.props.online ? 'Está online' : 'Não está')
+
     }
 
-    testeGet(e) {
-        e.preventDefault()
-        get((ocorrencia) => {
-            this.setState({
-                ocorrencia: ocorrencia
+    testeGet = id => e => {
+        e.preventDefault();
+
+        const online = this.props.online;
+
+        if (online === false) {
+            getOcorrenciaById((ocorrencia) => {
+                if (ocorrencia !== this.state.ocorrencia) {
+                    this.setState({
+                        ocorrencia: ocorrencia,
+                        show: 2
+                    })
+                } else {
+                    PopUp.exibeMensagem('error', 'Batata')
+                }
+
+                console.log(this.state.ocorrencia)
+            }, id)
+        } else {
+            const id = this.state.id;
+            axios.get("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/" + id)
+                .then(res => {
+                    this.setState({
+                        ocorrencia: res.data,
+                        show: 2
+                    })
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    }
+
+    getApi(e) {
+        e.preventDefault();
+        axios.get("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/")
+            .then(res => {
+                const dados = res.data;
+                console.log(dados);
             })
-
-            console.log(this.state.ocorrencia)
-        })  
+            .catch(error => {
+                console.log(error);
+            })
     }
-    
+
+    handleChange(e) {
+        e.preventDefault();
+
+        this.setState({
+            id: parseInt(e.target.value)
+        })
+
+        this.setState({
+            show: !this.state.show
+        })
+    }
+
+    testeOnOff = e => {
+        e.preventDefault();
+
+        const online = this.props.online;
+
+        console.log(online)
+    }
+
     render() {
 
         return (
@@ -43,12 +101,20 @@ export default class BuscarOcorrencia extends Component {
                 <form className="col s10">
                     <div className="row">
                         <div className="input-field col s6 offset-s2">
-                            <input type="number" id="buscaId" />
+                            <input name='id' onChange={this.handleChange} type="number" id="buscaId" />
                             <label htmlFor="buscaId">Digite o numero da ocorrência</label>
                         </div>
-                        <button onClick={this.testeGet} className="waves-effect waves-light btn red darken-1"><i className="material-icons">search</i></button>
+                        <button onClick={this.testeGet(this.state.id)} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Get</i></button>
+                        <button onClick={this.testePost} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Post</i></button>
+                        <button onClick={this.testePut} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Put</i></button>
+                        <br />
+                        <button onClick={this.testeOnOff} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Teste On/Off</i></button>
+
                     </div>
                 </form>
+
+                {this.state.show === 2 ? <Table values={this.state.ocorrencia} /> : console.log("batatan")}
+
             </div>
         );
     }

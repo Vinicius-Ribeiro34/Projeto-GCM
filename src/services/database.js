@@ -13,7 +13,7 @@ export default () => {
 
   request.onupgradeneeded = (e) => {
     const db = e.target.result;
-    db.createObjectStore('ocorrencia', { autoIncrement: true });
+    db.createObjectStore('ocorrencia', { keyPath: 'numeroDaOcorrencia' });
   }
 
   return request;

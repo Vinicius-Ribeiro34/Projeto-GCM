@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import M from 'materialize-css';
+import axios from 'axios'
 
 export default class AdicionarEnvolvido extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            bairros: [],
             envolvido: {
                 nome: '',
                 condicaoDaParte: '',
@@ -32,22 +34,22 @@ export default class AdicionarEnvolvido extends Component {
                     estado: '',
                     complemento: ''
                 }
-            },
-
-            dados: [],
-
+            }
         }
 
         this.cadastrar = this.cadastrar.bind(this)
         this.handleChange = this.handleChange.bind(this)
-        this.handleList = this.handleList.bind(this)
+        this.handleListCondicao = this.handleListCondicao.bind(this)
+        this.handleListBairros = this.handleListBairros.bind(this)
     }
 
     componentDidMount() {
         M.AutoInit();
+
+        this.fetchBairros();
     }
 
-    handleList(event) {
+    handleListCondicao(event) {
         const envolvido = {...this.state.envolvido}
         envolvido.condicaoDaParte = event.target.value;
 
@@ -56,14 +58,27 @@ export default class AdicionarEnvolvido extends Component {
         })
     }
 
+    handleListBairros(event) {
+        const envolvido = {...this.state.envolvido};
+        envolvido.endereco.bairro = parseInt(event.target.value);
+
+        this.setState({
+            envolvido
+        })
+    }
+
     handleChange(event) {
         event.preventDefault()
-        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+        let value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
         const { name } = event.target
         const envolvido = this.state.envolvido
         const separadorIndex = name.indexOf('_')
         const inicial = name.substring(0, separadorIndex)
-        const atributo = event.target.name.substring(separadorIndex + 1, name.length)
+        const atributo = name.substring(separadorIndex + 1, name.length)
+
+        if(this.identificadorInt(atributo)) {
+            value = parseInt(value)
+        }
 
         if (inicial === 'rg') {
             envolvido.rg[atributo] = value
@@ -80,9 +95,10 @@ export default class AdicionarEnvolvido extends Component {
         )
     }
 
-    mostrar = e => {
-        e.preventDefault();
-        console.log(JSON.stringify(this.state.envolvido))
+    identificadorInt(value) {
+        const campos = ['numero'];
+
+        return !(campos.indexOf(value) === -1)
     }
 
     cadastrar(e) {
@@ -92,6 +108,25 @@ export default class AdicionarEnvolvido extends Component {
         handleChange('envolvido')
 
         this.props.adicionarEnvolvido();
+    }
+
+    fetchBairros() {
+        axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/bairros/')
+            .then(res => {
+                this.setState({
+                    bairros: res.data
+                });
+            }).catch(res => {
+                console.log(res);
+            });
+    }
+
+    mountOptions() {
+        return (
+            this.state.bairros.map((bairro) => {
+                return <option key={bairro.id} value={bairro.id}>{bairro.nome}</option>
+            })
+        )
     }
 
     render() {
@@ -126,7 +161,7 @@ export default class AdicionarEnvolvido extends Component {
                         </div>
                         <div className="row">
                             <div className="input-field col s5 offset-s1">
-                                <select value={this.state.envolvido.condicaoDaParte} onChange={this.handleList}>
+                                <select value={this.state.envolvido.condicaoDaParte} onChange={this.handleListCondicao}>
                                     <option value="">Selecione</option>
                                     <option value="VITIMA">Vítima</option>
                                     <option value="AUTOR">Autor</option>
@@ -326,15 +361,9 @@ export default class AdicionarEnvolvido extends Component {
                                 <label htmlFor="enderecoResidencia">Residencia</label>
                             </div>
                             <div className="input-field col s5">
-                                <input
-                                    name='endereco_bairro'
-                                    id="enderecoBairro"
-                                    type="text"
-                                    className="validate"
-                                    onChange={this.handleChange}
-                                    value={this.state.envolvido.endereco.bairro}
-                                />
-                                <label htmlFor="enderecoBairro">Bairro</label>
+                                <select className="browser-default" value={this.state.envolvido.endereco.bairro} onChange={this.handleListBairros}>
+                                    {this.mountOptions()}
+                                </select>
                             </div>
                         </div>
                         <div className="row">

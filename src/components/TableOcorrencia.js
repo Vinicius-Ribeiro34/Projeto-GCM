@@ -58,7 +58,7 @@ export default class TableOcorrencia extends Component {
                             <td>Local:</td>
                             <td><strong>{values.local}</strong></td>
                             <td>Bairro:</td>
-                            <td><strong>{values.bairro}</strong></td>
+                            <td><strong>{/*values.bairro*/}</strong></td>
                         </tr>
                     </tbody>
                 </table>

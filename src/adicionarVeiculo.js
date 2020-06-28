@@ -25,6 +25,7 @@ export default class AdicionarVeiculo extends Component {
 
     cadastrar(e) {
         e.preventDefault();
+
         const { values } = this.props;
         values.veiculos.push(this.state);
 
@@ -42,9 +43,21 @@ export default class AdicionarVeiculo extends Component {
         e.preventDefault();
         const { name, value } = e.target
 
-        this.setState({
-            [name]: value
-        })
+        if(this.identificadorInt(name)) {
+            this.setState({
+                [name] : parseInt(value)
+            })
+        } else {
+            this.setState({
+                [name]: value
+            })
+        }
+    }
+
+    identificadorInt(value) {
+        const campos = ['ano'];
+
+        return !(campos.indexOf(value) === -1)
     }
 
     render() {

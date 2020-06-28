@@ -17,7 +17,6 @@ export const add = (ocorrencia) => {
   }
 }
 
-
 export const get = (callback) => {
   const request = DB();
 
@@ -33,4 +32,17 @@ export const get = (callback) => {
   }
 }
 
+export const getOcorrenciaById = (callback, id) => {
+  const request = DB();
 
+  request.onerror = onRequestError;
+
+  request.onsuccess = (e) => {
+    const db = e.target.result;
+    const transaction = db.transaction(['ocorrencia'], 'readonly');
+    const store = transaction.objectStore('ocorrencia');
+    store.get(id).onsuccess = (ev) => {
+      callback(ev.target.result);
+    }
+  }
+}

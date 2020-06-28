@@ -6,8 +6,6 @@ export default class QuintoPasso extends Component {
     state = {
         show: false,
         show2: true,
-
-        dados: []
     }
 
     back = e => {
