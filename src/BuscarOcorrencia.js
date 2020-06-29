@@ -77,7 +77,7 @@ export default class BuscarOcorrencia extends Component {
                     <div className="row">
                         <div className="input-field col s6 offset-s2">
                             <input name='id' onChange={this.handleChange} type="number" id="buscaId" />
-                            <label htmlFor="buscaId">Digite o numero da ocorrência</label>
+                            <label htmlFor="buscaId">ID da Ocorrência</label>
                         </div>
                         <div className="input-field col s1">
                         <button onClick={this.get(this.state.id)} className="waves-effect waves-light btn red darken-1"><i className="material-icons">search</i></button>

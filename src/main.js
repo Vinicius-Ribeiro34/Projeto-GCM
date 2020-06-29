@@ -10,6 +10,8 @@ import BuscarOcorrencia from './BuscarOcorrencia'
 import ListarOcorrencias from './ListarOcorrencias'
 import PopUp from './components/PopUp'
 import Indicadores from './Indicadores'
+import IndicadoresRegiao from './IndicadoresRegiao'
+import IndicadoresOcorrencias from './IndicadoresOcorrencias'
 
 export default class Main extends Component {
 
@@ -109,9 +111,21 @@ export default class Main extends Component {
         })
     }
 
-    indicadores = () =>{
+    indicadores = () => {
         this.setState({
             step: 10
+        })
+    }
+
+    indicadoresRegiao = () => {
+        this.setState({
+            step: 11
+        })
+    }
+
+    indicadoresOcorrencias = () => {
+        this.setState({
+            step: 12
         })
     }
 
@@ -257,7 +271,22 @@ export default class Main extends Component {
 
         if (step === 10) {
             return (
-                <Indicadores />
+                <Indicadores
+                    regiao={this.indicadoresRegiao}
+                    ocorrencias={this.indicadoresOcorrencias}
+                />
+            )
+        }
+
+        if (step === 11) {
+            return (
+                <IndicadoresRegiao />
+            )
+        }
+
+        if (step === 12) {
+            return (
+                <IndicadoresOcorrencias />
             )
         }
 

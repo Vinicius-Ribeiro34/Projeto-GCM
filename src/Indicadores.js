@@ -8,9 +8,18 @@ export default class Indicadores extends Component {
         super(props);
 
         this.state = {
-            show: 1,
             ocorrencias: [],
         }
+    }
+
+    indicadoresRegiao = e => {
+        e.preventDefault();
+        this.props.regiao();
+    }
+
+    indicadoresOcorrencias = e => {
+        e.preventDefault();
+        this.props.ocorrencias();
     }
 
     componentDidMount() {
@@ -32,8 +41,8 @@ export default class Indicadores extends Component {
                 <p className="titulo">Indicadores</p>
                 <form className="col s10">
                     <div className="row">
-                        <button className="waves-effect waves-light btn red darken-1 col s4 offset-s1">Região</button>
-                        <button className="waves-effect waves-light btn red darken-1 col s4 offset-s2">Ocorrências</button>
+                        <button onClick={this.indicadoresRegiao} className="waves-effect waves-light btn red darken-1 col s4 offset-s1">Região</button>
+                        <button onClick={this.indicadoresOcorrencias} className="waves-effect waves-light btn red darken-1 col s4 offset-s2">Ocorrências</button>
                     </div>
                 </form>
                 <div className="divider"></div>
