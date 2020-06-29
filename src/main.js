@@ -9,6 +9,7 @@ import TelaInicial from './TelaInicial'
 import BuscarOcorrencia from './BuscarOcorrencia'
 import ListarOcorrencias from './ListarOcorrencias'
 import PopUp from './components/PopUp'
+import Indicadores from './Indicadores'
 
 export default class Main extends Component {
 
@@ -108,6 +109,12 @@ export default class Main extends Component {
         })
     }
 
+    indicadores = () =>{
+        this.setState({
+            step: 10
+        })
+    }
+
     nextStep = () => {
         const { step } = this.state;
 
@@ -124,7 +131,7 @@ export default class Main extends Component {
         })
     }
 
-    showStep = () => {
+    showPage = () => {
         const {
             step, numeroDaOcorrencia, data, horaFato, numTalao,
             viatura, horaIrradiacao, horaLocal, primeiroTermino,
@@ -228,6 +235,7 @@ export default class Main extends Component {
                     gerarOcorrencia={this.gerarOcorrencia}
                     buscarOcorrencia={this.buscarOcorrencia}
                     listarOcorrencias={this.listarOcorrencias}
+                    indicadores={this.indicadores}
                     values={values}
                 />
             )
@@ -247,12 +255,18 @@ export default class Main extends Component {
             )
         }
 
+        if (step === 10) {
+            return (
+                <Indicadores />
+            )
+        }
+
     }
 
     render() {
         return (
             <div>
-                {this.showStep()}
+                {this.showPage()}
             </div>
         )
     }

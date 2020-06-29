@@ -14,60 +14,58 @@ export default class TableEnvolvidos extends Component {
                             <table className="striped centered">
                                 <tbody>
                                     <tr>
-                                        <td>Condição da Parte:</td>
-                                        <td><strong>{e.condicaoDaParte}</strong></td>
-                                        <td>Conduzido:</td>
-                                        <td><strong>{e.conduzido ? "Sim" : "Não"}</strong></td>
+                                        <p>Condição da Parte: <strong>{e.condicaoDaParte}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Data Nascimento:</td>
-                                        <td><strong>{e.dataNascimento}</strong></td>
-                                        <td>Residencia:</td>
-                                        <td><strong>{e.endereco.residencia}</strong></td>
+                                        <p>Conduzido: <strong>{e.conduzido ? "Sim" : "Não"}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Numero:</td>
-                                        <td><strong>{e.endereco.numero}</strong></td>
-                                        <td>Bairro:</td>
-                                        <td><strong>{e.endereco.bairro}</strong></td>
+                                        <p>Data Nascimento: <strong>{e.dataNascimento}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Complemento:</td>
-                                        <td><strong>{e.endereco.complemento}</strong></td>
-                                        <td>Cidade:</td>
-                                        <td><strong>{e.endereco.cidade}</strong></td>
+                                        <p>Residencia: <strong>{e.endereco.residencia}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Estado:</td>
-                                        <td><strong>{e.endereco.estado}</strong></td>
-                                        <td>RG:</td>
-                                        <td><strong>{e.rg.numeroRg}</strong></td>
+                                        <p>Numero: <strong>{e.endereco.numero}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>UF:</td>
-                                        <td>{e.rg.estado}<strong></strong></td>
-                                        <td>Nacionalidade:</td>
-                                        <td><strong>{e.nacionalidade}</strong></td>
+                                        <p>Bairro: <strong>{e.endereco.bairro}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Naturalidade Cidade:</td>
-                                        <td><strong>{e.naturalidadeCidade}</strong></td>
-                                        <td>Naturalidade Estado:</td>
-                                        <td><strong>{e.naturalidadeEstado}</strong></td>
+                                        <p>Complemento: <strong>{e.endereco.complemento}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Pai:</td>
-                                        <td><strong>{e.pai}</strong></td>
-                                        <td>Mãe:</td>
-                                        <td><strong>{e.mae}</strong></td>
+                                        <p>Cidade: <strong>{e.endereco.cidade}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Local de Trabalho:</td>
-                                        <td><strong>{e.localDeTrabalho}</strong></td>
+                                        <p>Estado: <strong>{e.endereco.estado}</strong></p>
                                     </tr>
                                     <tr>
-                                        <td>Versão do Envolvido:</td>
-                                        <td><strong>{e.versaoDoEnvolvido}</strong></td>
+                                        <p>RG: <strong>{e.rg.numeroDoRG}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>UF: <strong>{e.rg.estado}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>Nacionalidade: <strong>{e.nacionalidade}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>Naturalidade Cidade: <strong>{e.naturalidadeCidade}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>Naturalidade Estado: <strong>{e.naturalidadeEstado}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>Pai: <strong>{e.pai}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>Mãe: <strong>{e.mae}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>Local de Trabalho: <strong>{e.localDeTrabalho}</strong></p>
+                                    </tr>
+                                    <tr>
+                                        <p>Versão do Envolvido: <strong>{e.versaoDoEnvolvido}</strong></p>
                                     </tr>
                                 </tbody>
                             </table>

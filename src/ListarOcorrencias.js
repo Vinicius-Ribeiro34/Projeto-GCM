@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios'
 
 
@@ -32,27 +32,43 @@ export default class ListarOcorrencia extends Component {
     render() {
 
         return (
-            <div>
-                <h1>Teste - Pull de Ocorrencias</h1>
-                <br/>
+            <div className="container">
+                <p className="titulo">Lista de Ocorrências:</p>
+                <br />
                 <div>
                     {this.state.ocorrencias.map((oc, index) => {
                         return (
                             <div key={index}>
-                                <p>Número da Ocorrência: {oc.numeroDaOcorrencia}</p>{oc.ocorrencias.map((o, index) => {
-                                    return (
-                                    <div>
-                                        <p>Natureza: {o.naturezaDaOcorrencia}</p> 
-                                        <p>Código da Ocorrencia: {o.codigoDaOcorrencia}</p></div>
-                                    ) 
-                                })}
-                                <br/>
+                                <table className="striped centered">
+                                    <thead>
+                                        <tr>
+                                            <th><p>Número da Ocorrência: {oc.numeroDaOcorrencia}</p></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <p><b>ID da Ocorrência: {oc.id}</b></p>
+                                        </tr>
+                                        {oc.ocorrencias.map((o, index) => {
+                                            return (
+                                                <Fragment>
+                                                <tr><p>Natureza: {o.naturezaDaOcorrencia}</p></tr>
+                                                <tr><p>Código da Ocorrencia: {o.codigoDaOcorrencia}</p></tr>
+                                                </Fragment>
+                                        )
+                                        })}
+                                    </tbody>
+                                </table>
+                                <br />
+                                <br />
+                                <div className="divider"></div>
                             </div>
-                                )
+                        )
                     })}
+
                 </div>
             </div>
-        
+
         );
     }
 

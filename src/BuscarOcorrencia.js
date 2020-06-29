@@ -16,14 +16,14 @@ export default class BuscarOcorrencia extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
-        this.testeGet = this.testeGet.bind(this)
+        this.testeGet = this.get.bind(this)
     }
 
     componentDidMount() {
         console.log(this.props.online ? 'Está online' : 'Não está')
     }
 
-    testeGet = id => e => {
+    get = id => e => {
         e.preventDefault();
 
         const online = this.props.online;
@@ -68,20 +68,6 @@ export default class BuscarOcorrencia extends Component {
         })
     }
 
-    testeOnOff = e => {
-        e.preventDefault();
-
-        const online = this.props.online;
-
-        console.log(online)
-    }
-
-    teste(e) {
-        e.preventDefault()
-        const validacao = this.props.online;
-        console.log(validacao);
-    }
-
     render() {
         
         return (
@@ -93,12 +79,9 @@ export default class BuscarOcorrencia extends Component {
                             <input name='id' onChange={this.handleChange} type="number" id="buscaId" />
                             <label htmlFor="buscaId">Digite o numero da ocorrência</label>
                         </div>
-                        <button onClick={this.testeGet(this.state.id)} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Get</i></button>
-                        <button onClick={this.testePost} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Post</i></button>
-                        <button onClick={this.testePut} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Put</i></button>
-                        <br />
-                        <button onClick={this.testeOnOff} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Teste On/Off</i></button>
-
+                        <div className="input-field col s1">
+                        <button onClick={this.get(this.state.id)} className="waves-effect waves-light btn red darken-1"><i className="material-icons">search</i></button>
+                        </div>
                     </div>
                 </form>
 

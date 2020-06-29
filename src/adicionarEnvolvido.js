@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import M from 'materialize-css';
 import axios from 'axios'
+import PopUp from './components/PopUp'
 
 export default class AdicionarEnvolvido extends Component {
     constructor(props) {
@@ -108,6 +109,8 @@ export default class AdicionarEnvolvido extends Component {
         handleChange('envolvido')
 
         this.props.adicionarEnvolvido();
+
+        PopUp.exibeMensagem('success', "Envolvido cadastrado");
     }
 
     fetchBairros() {
@@ -132,7 +135,7 @@ export default class AdicionarEnvolvido extends Component {
     render() {
 
         return (
-            <div className="container">
+            
                 <div className="section">
                     <form className="col s10">
                         <div className="row">
@@ -147,7 +150,7 @@ export default class AdicionarEnvolvido extends Component {
                                 />
                                 <label htmlFor="nome">Nome Envolvido</label>
                             </div>
-                            <div className="input-field col s6">
+                            <div className="input-field col s5">
                                 <input
                                     name='_dataNascimento'
                                     id="nascimento"
@@ -395,7 +398,7 @@ export default class AdicionarEnvolvido extends Component {
                         </div>
                     </form>
                 </div>
-            </div>
+            
         )
     }
 }

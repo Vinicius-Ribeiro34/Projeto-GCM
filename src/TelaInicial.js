@@ -18,6 +18,11 @@ export default class TelaInicial extends Component {
         this.props.listarOcorrencias();
     }
 
+    indicadores = e => {
+        e.preventDefault();
+        this.props.indicadores();
+    }
+
     render() {
         return (
             <div className="container">
@@ -41,7 +46,7 @@ export default class TelaInicial extends Component {
                     </div>
                     <div className="row">
                         <div className="espaco">
-                            <button  className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">assignment</i>Gerar Relatório</button>
+                            <button onClick={this.indicadores} className="waves-effect waves-light btn-large red App col s8 offset-s2"><i className="material-icons left large">assignment</i>Indicadores</button>
                         </div>
                     </div>
                 </div>
