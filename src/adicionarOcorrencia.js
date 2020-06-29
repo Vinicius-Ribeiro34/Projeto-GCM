@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
-import axios from 'axios'
+import {getCodNat} from './services/codNat'
 
 export default class AdicionarVeiculo extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            ocorrenciasOffline: [],
             ocorrencias: [],
             ocorrencia: {
                 id: ''
@@ -21,7 +22,13 @@ export default class AdicionarVeiculo extends Component {
     componentDidMount() {
         M.AutoInit();
 
-        this.fetchOcorrencias();
+        //this.fetchOcorrencias();
+
+        getCodNat(codNat => {
+            this.setState({
+                ocorrenciasOffline: codNat
+            });
+          })
     }
 
     cadastrar(e) {
@@ -51,21 +58,29 @@ export default class AdicionarVeiculo extends Component {
         })
     }
 
-    fetchOcorrencias() {
-        axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/ocorrencias/')
-            .then(res => {
-                this.setState({
-                    ocorrencias: res.data
-                });
-            }).catch(res => {
-                console.log(res);
-            });
+    // fetchOcorrencias() {
+    //     axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/ocorrencias/')
+    //         .then(res => {
+    //             this.setState({
+    //                 ocorrencias: res.data
+    //             });
+    //         }).catch(res => {
+    //             console.log(res);
+    //         });
+    // }
+
+    mountOptionsCodigo() {
+        return (
+            this.state.ocorrenciasOffline.map((oc) => {
+                return <option key={oc.id} value={oc.id}>{oc.codigoDaOcorrencia}</option>
+            })
+        )
     }
 
-    mountOptions() {
+    mountOptionsNatureza() {
         return (
-            this.state.ocorrencias.map((oc) => {
-                return <option key={oc.id} value={oc.id}>{oc.codigoDaOcorrencia}</option>
+            this.state.ocorrenciasOffline.map((oc) => {
+                return <option key={oc.id} value={oc.id}>{oc.naturezaDaOcorrencia}</option>
             })
         )
     }
@@ -78,23 +93,16 @@ export default class AdicionarVeiculo extends Component {
                 <div className="section">
                         <div className="row">
                             <div className="input-field col s10 offset-s1">
-                                <input
-                                    name='naturezaDaOcorrencia'
-                                    id="natureza"
-                                    type="text"
-                                    className="validate"
-                                    onChange={this.handleChange}
-                                    value={this.state.naturezaDaOcorrencia}
-                                />
-                                <label htmlFor="natureza">Natureza da ocorrência</label>
+                                <select className="browser-default" value={this.state.ocorrencia.id} onChange={this.handleList}>
+                                    {this.mountOptionsCodigo()}
+                                </select>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s10 offset-s1">
                                 <select className="browser-default" value={this.state.ocorrencia.id} onChange={this.handleList}>
-                                    {this.mountOptions()}
+                                    {this.mountOptionsNatureza()}
                                 </select>
-                                {this.state.ocorrencia.id}
                             </div>
                         </div>
                         <div className="row">

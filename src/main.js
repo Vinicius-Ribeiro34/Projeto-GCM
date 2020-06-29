@@ -9,6 +9,9 @@ import TelaInicial from './TelaInicial'
 import BuscarOcorrencia from './BuscarOcorrencia'
 import ListarOcorrencias from './ListarOcorrencias'
 import PopUp from './components/PopUp'
+import { addBairros } from './services/bairros'
+import {addCodNat} from './services/codNat'
+import axios from 'axios'
 
 export default class Main extends Component {
 
@@ -16,18 +19,18 @@ export default class Main extends Component {
         step: 7,
 
         //step - 1
-        numeroDaOcorrencia: 1,
+        numeroDaOcorrencia: '',
         data: '',
         horaFato: '',
         numTalao: '',
         viatura: '',
 
         //step - 2
-        horaIrradiacao: '',
+        horaDeIrradiacao: '',
         horaLocal: '',
         primeiroTermino: '',
         segundoTermino: '',
-        kmIrradiacao: '',
+        kmDeIrradiacao: '',
         kmLocal: '',
         kmPrimeiroTermino: '',
         kmSegundoTermino: '',
@@ -47,11 +50,53 @@ export default class Main extends Component {
         veiculos: [],
 
         online: true,
+
+        bairros: [],
+        ocorrenciasOnline: []
     }
 
     componentDidMount() {
         window.addEventListener('online', this.online)
         window.addEventListener('offline', this.offline)
+
+        this.fetchBairros();
+        this.fetchOcorrencias();
+    }
+
+    fetchBairros() {
+        axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/bairros/')
+            .then(res => {
+                this.setState({
+                    bairros: res.data
+                }); 
+                this.testeBairros()
+            }).catch(res => {
+                console.log(res);
+            });
+    }
+
+    fetchOcorrencias() {
+        axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/ocorrencias/')
+            .then(res => {
+                this.setState({
+                    ocorrenciasOnline: res.data
+                });
+                this.testeOcorrencias()
+            }).catch(res => {
+                console.log(res);
+            });
+    }
+
+    testeBairros = () => {
+        this.state.bairros.map(bairro => {
+           return addBairros(bairro)
+        })
+    }
+
+    testeOcorrencias = () => {
+        this.state.ocorrenciasOnline.map(ocorrencia => {
+            return addCodNat(ocorrencia)
+        })
     }
 
     online = () => {
@@ -127,15 +172,15 @@ export default class Main extends Component {
     showStep = () => {
         const {
             step, numeroDaOcorrencia, data, horaFato, numTalao,
-            viatura, horaIrradiacao, horaLocal, primeiroTermino,
-            segundoTermino, kmIrradiacao, kmLocal, kmPrimeiroTermino,
+            viatura, horaDeIrradiacao, horaLocal, primeiroTermino,
+            segundoTermino, kmDeIrradiacao, kmLocal, kmPrimeiroTermino,
             kmSegundoTermino, ocorrencias, local, bairro, envolvidos, veiculos, oficial, relatorioDaGCM
         } = this.state;
 
         const values = {
             numeroDaOcorrencia, data, horaFato, numTalao,
-            viatura, horaIrradiacao, horaLocal, primeiroTermino,
-            segundoTermino, kmIrradiacao, kmLocal, kmPrimeiroTermino,
+            viatura, horaDeIrradiacao, horaLocal, primeiroTermino,
+            segundoTermino, kmDeIrradiacao, kmLocal, kmPrimeiroTermino,
             kmSegundoTermino, ocorrencias, local, bairro, envolvidos, veiculos, oficial, relatorioDaGCM
         };
 

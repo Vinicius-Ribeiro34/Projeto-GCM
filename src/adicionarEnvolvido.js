@@ -22,7 +22,7 @@ export default class AdicionarEnvolvido extends Component {
                 localDeTrabalho: '',
                 versaoDoEnvolvido: '',
                 rg: {
-                    numeroRg: '',
+                    numeroDoRG: '',
                     orgaoExpedidor: '',
                     estado: ''
                 },
@@ -205,12 +205,12 @@ export default class AdicionarEnvolvido extends Component {
                             </div>
                             <div className="input-field col s5">
                                 <input
-                                    name='rg_numeroRg'
+                                    name='rg_numeroDoRG'
                                     id="rg"
                                     type="number"
                                     className="validate"
                                     onChange={this.handleChange}
-                                    value={this.state.envolvido.rg.numeroRg}
+                                    value={this.state.envolvido.rg.numeroDoRG}
                                 />
                                 <label htmlFor="rg">Numero RG</label>
                             </div>

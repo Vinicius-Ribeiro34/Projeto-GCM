@@ -41,7 +41,7 @@ export default class TableEnvolvidos extends Component {
                                         <td>Estado:</td>
                                         <td><strong>{e.endereco.estado}</strong></td>
                                         <td>RG:</td>
-                                        <td><strong>{e.rg.numeroRg}</strong></td>
+                                        <td><strong>{e.rg.numeroDoRG}</strong></td>
                                     </tr>
                                     <tr>
                                         <td>UF:</td>

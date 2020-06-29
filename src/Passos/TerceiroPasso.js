@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import AdicionarOcorrencia from '../adicionarOcorrencia'
 import M from 'materialize-css'
-import axios from 'axios'
-
+import {getBairros} from '../services/bairros'
 
 export default class TerceiroPasso extends Component {
     constructor(props) {
@@ -12,7 +11,7 @@ export default class TerceiroPasso extends Component {
             show: false,
             show2: true,
             bairro: '',
-            bairros: [],
+            bairrosOffline: []
         }
 
         this.handleList = this.handleList.bind(this)
@@ -21,7 +20,11 @@ export default class TerceiroPasso extends Component {
     componentDidMount() {
         M.AutoInit();
 
-        this.fetchBairros();
+        getBairros(bairro => {
+            this.setState({
+                bairrosOffline: bairro
+            });
+          })
     }
 
     back = e => {
@@ -52,20 +55,9 @@ export default class TerceiroPasso extends Component {
         })
     }
 
-    fetchBairros() {
-        axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/bairros/')
-            .then(res => {
-                this.setState({
-                    bairros: res.data
-                });
-            }).catch(res => {
-                console.log(res);
-            });
-    }
-
     mountOptions() {
         return (
-            this.state.bairros.map((bairro) => {
+            this.state.bairrosOffline.map((bairro) => {
                 return <option key={bairro.id} value={bairro.id}>{bairro.nome}</option>
             })
         )

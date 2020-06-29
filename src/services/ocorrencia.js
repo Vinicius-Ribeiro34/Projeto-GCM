@@ -1,4 +1,4 @@
-import DB from './database';
+import DB from './databaseOcorrencia';
 
 const onRequestError = (e) => {
   console.log('Database Erro [OCORRENCIA]', e);

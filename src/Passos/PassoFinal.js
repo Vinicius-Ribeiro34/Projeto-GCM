@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {add, get} from '../services/ocorrencia'
+import {add} from '../services/ocorrencia'
 import Table from '../Table'
 import axios from 'axios'
 
@@ -13,36 +13,24 @@ export default class PassoFinal extends Component {
         this.props.prevStep();
     }
 
-    salvar = (e) => {
+    cadastrar = (e) => {
         e.preventDefault()
         const online = this.props.online;
         if(online === false) {
             add(this.props.values)
         } else {
-            this.testePost();
+            this.boletimPost();
         }
        
         console.log(this.props.values)
     }
 
-    testePost() {
+    boletimPost() {
         axios.post("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins", this.props.values,
             { headers: { 'Content-Type': 'application/json' } })
             .then(response => {
                 console.log(response)
             }).catch((error) => console.log(error.response));
-    }
-
-    testeGet() {
-
-        get((ocorrencia) => {
-            this.setState({
-                ocorrencia: ocorrencia
-            })
-        })
-
-        console.log(this.state.ocorrencia)
-
     }
 
     render() {
@@ -65,7 +53,7 @@ export default class PassoFinal extends Component {
                 <form className="col s10">
                     <div className="row">
                 <button onClick={this.back} className="waves-effect waves-light btn red darken-1 col s3 offset-s2 espaco">Voltar</button>
-                <button onClick={this.salvar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Concluir</button>
+                <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Cadastrar</button>
                 </div>
                 </form>
             </div>

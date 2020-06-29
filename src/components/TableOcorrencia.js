@@ -26,7 +26,7 @@ export default class TableOcorrencia extends Component {
                         </tr>
                         <tr>
                             <td>Hora Irradiação:</td>
-                            <td><strong>{values.horaIrradiacao}</strong></td>
+                            <td><strong>{values.horaDeIrradiacao}</strong></td>
                             <td>Hora Local:</td>
                             <td><strong>{values.horaLocal}</strong></td>
                         </tr>
@@ -38,7 +38,7 @@ export default class TableOcorrencia extends Component {
                         </tr>
                         <tr>
                             <td>Km Irradiação:</td>
-                            <td><strong>{values.kmIrradiacao}</strong></td>
+                            <td><strong>{values.kmDeIrradiacao}</strong></td>
                             <td>Km Local:</td>
                             <td><strong>{values.kmLocal}</strong></td>
                         </tr>

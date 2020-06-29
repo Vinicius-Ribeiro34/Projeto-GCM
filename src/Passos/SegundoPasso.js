@@ -28,12 +28,12 @@ export default class SegundoPasso extends Component {
                         <div className="row">
                             <div className="input-field col s5 offset-s1">
                                 <input
-                                name='horaIrradiacao'
+                                name='horaDeIrradiacao'
                                 id="hora-irrad"
                                 type="time"
                                 className="validate"
-                                onChange={handleChange('horaIrradiacao')}
-                                value={values.horaIrradiacao}
+                                onChange={handleChange('horaDeIrradiacao')}
+                                value={values.horaDeIrradiacao}
                                 />
                                 <label htmlFor="hora-irrad">Hora Irrad</label>
                             </div>
@@ -76,12 +76,12 @@ export default class SegundoPasso extends Component {
                         <div className="row">
                             <div className="input-field col s5 offset-s1">
                                 <input
-                                name='kmIrradiacao'
+                                name='kmDeIrradiacao'
                                 id="km-irrad"
                                 type="number"
                                 className="validate"
-                                onChange={handleChange('kmIrradiacao')}
-                                value={values.kmIrradiacao}
+                                onChange={handleChange('kmDeIrradiacao')}
+                                value={values.kmDeIrradiacao}
                                 />
                                 <label htmlFor="km-irrad">Km Irrad</label>
                             </div>
