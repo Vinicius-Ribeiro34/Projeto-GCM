@@ -83,7 +83,7 @@ export default class TerceiroPasso extends Component {
                         {this.state.show && <AdicionarOcorrencia adicionarOcorrencia={this.adicionarOcorrencia} values={values} />}
                         <br />
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <input
                                     name='local'
                                     id="local"
@@ -96,7 +96,7 @@ export default class TerceiroPasso extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <select className="browser-default" value={this.state.bairro} onChange={this.handleList}>
                                     {this.mountOptions()}
                                 </select>

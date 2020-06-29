@@ -19,13 +19,13 @@ class Header extends Component {
                         <li><a href="/">Registrar Ocorrência</a></li>
                         <li><a href="/">Buscar Ocorrência</a></li>
                         <li><a href="/">Listar Ocorrências</a></li>
-                        <li><a href="/">Gerar Relatório</a></li>
+                        <li><a href="/">Indicadores</a></li>
                     </ul>
                     <ul className="sidenav" id="mobile-demo">
                         <li><a href="/">Registrar Ocorrência</a></li>
                         <li><a href="/">Buscar Ocorrência</a></li>
                         <li><a href="/">Listar Ocorrências</a></li>
-                        <li><a href="/">Gerar Relatório</a></li>
+                        <li><a href="/">Indicadores</a></li>
                     </ul>
                 </div>
             </nav>

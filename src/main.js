@@ -12,6 +12,9 @@ import PopUp from './components/PopUp'
 import { addBairros } from './services/bairros'
 import {addCodNat} from './services/codNat'
 import axios from 'axios'
+import Indicadores from './Indicadores'
+import IndicadoresRegiao from './IndicadoresRegiao'
+import IndicadoresOcorrencias from './IndicadoresOcorrencias'
 
 export default class Main extends Component {
 
@@ -153,6 +156,24 @@ export default class Main extends Component {
         })
     }
 
+    indicadores = () => {
+        this.setState({
+            step: 10
+        })
+    }
+
+    indicadoresRegiao = () => {
+        this.setState({
+            step: 11
+        })
+    }
+
+    indicadoresOcorrencias = () => {
+        this.setState({
+            step: 12
+        })
+    }
+
     nextStep = () => {
         const { step } = this.state;
 
@@ -169,7 +190,7 @@ export default class Main extends Component {
         })
     }
 
-    showStep = () => {
+    showPage = () => {
         const {
             step, numeroDaOcorrencia, data, horaFato, numTalao,
             viatura, horaDeIrradiacao, horaLocal, primeiroTermino,
@@ -273,6 +294,7 @@ export default class Main extends Component {
                     gerarOcorrencia={this.gerarOcorrencia}
                     buscarOcorrencia={this.buscarOcorrencia}
                     listarOcorrencias={this.listarOcorrencias}
+                    indicadores={this.indicadores}
                     values={values}
                 />
             )
@@ -292,12 +314,33 @@ export default class Main extends Component {
             )
         }
 
+        if (step === 10) {
+            return (
+                <Indicadores
+                    regiao={this.indicadoresRegiao}
+                    ocorrencias={this.indicadoresOcorrencias}
+                />
+            )
+        }
+
+        if (step === 11) {
+            return (
+                <IndicadoresRegiao />
+            )
+        }
+
+        if (step === 12) {
+            return (
+                <IndicadoresOcorrencias />
+            )
+        }
+
     }
 
     render() {
         return (
             <div>
-                {this.showStep()}
+                {this.showPage()}
             </div>
         )
     }

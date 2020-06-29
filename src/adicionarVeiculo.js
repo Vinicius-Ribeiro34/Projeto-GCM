@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
+import PopUp from './components/PopUp'
 
 export default class AdicionarVeiculo extends Component {
     constructor(props) {
@@ -30,6 +31,8 @@ export default class AdicionarVeiculo extends Component {
         values.veiculos.push(this.state);
 
         this.props.adicionarVeiculo();
+
+        PopUp.exibeMensagem('success', "Veículo cadastrado");
     }
 
     handleList(event) {
@@ -63,12 +66,10 @@ export default class AdicionarVeiculo extends Component {
     render() {
 
         return (
-            <div className="container">
-                <div className="divider"></div>
                 <div className="section">
                     <form className="col s10">
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <input
                                     name='placa'
                                     id="placa"
@@ -81,7 +82,7 @@ export default class AdicionarVeiculo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <input
                                     name='modelo'
                                     id="modelo"
@@ -94,7 +95,7 @@ export default class AdicionarVeiculo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <input
                                     name='ano'
                                     id="ano"
@@ -107,7 +108,7 @@ export default class AdicionarVeiculo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <input
                                     name='cor'
                                     id="cor"
@@ -120,7 +121,7 @@ export default class AdicionarVeiculo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <input
                                     name='codRenavam'
                                     id="codigoRenavam"
@@ -133,7 +134,7 @@ export default class AdicionarVeiculo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <select value={this.state.dano} onChange={this.handleList}>
                                     <option value="">Selecione</option>
                                     <option value="PEQUENA_MONTA">Pequeno</option>
@@ -148,7 +149,7 @@ export default class AdicionarVeiculo extends Component {
                         </div>
                     </form>
                 </div>
-            </div>
+            
         )
     }
 }

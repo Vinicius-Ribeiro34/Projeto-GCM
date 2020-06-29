@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
 import {getCodNat} from './services/codNat'
+import PopUp from './components/PopUp'
 
 export default class AdicionarVeiculo extends Component {
     constructor(props) {
@@ -22,8 +23,6 @@ export default class AdicionarVeiculo extends Component {
     componentDidMount() {
         M.AutoInit();
 
-        //this.fetchOcorrencias();
-
         getCodNat(codNat => {
             this.setState({
                 ocorrenciasOffline: codNat
@@ -35,8 +34,8 @@ export default class AdicionarVeiculo extends Component {
         e.preventDefault();
         const { values } = this.props;
         values.ocorrencias.push(this.state.ocorrencia);
-
         this.props.adicionarOcorrencia();
+        PopUp.exibeMensagem('success', "Ocorrência cadastrada");
     }
 
     handleChange(e) {
@@ -58,17 +57,6 @@ export default class AdicionarVeiculo extends Component {
         })
     }
 
-    // fetchOcorrencias() {
-    //     axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/ocorrencias/')
-    //         .then(res => {
-    //             this.setState({
-    //                 ocorrencias: res.data
-    //             });
-    //         }).catch(res => {
-    //             console.log(res);
-    //         });
-    // }
-
     mountOptionsCodigo() {
         return (
             this.state.ocorrenciasOffline.map((oc) => {
@@ -88,9 +76,9 @@ export default class AdicionarVeiculo extends Component {
     render() {
 
         return (
-            <div className="container">
-                <div className="divider"></div>
+            
                 <div className="section">
+                    <form className="col s10">
                         <div className="row">
                             <div className="input-field col s10 offset-s1">
                                 <select className="browser-default" value={this.state.ocorrencia.id} onChange={this.handleList}>
@@ -99,17 +87,18 @@ export default class AdicionarVeiculo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
+                            <div className="input-field col s8 offset-s2">
                                 <select className="browser-default" value={this.state.ocorrencia.id} onChange={this.handleList}>
                                     {this.mountOptionsNatureza()}
                                 </select>
                             </div>
                         </div>
                         <div className="row">
-                            <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s4 offset-s2" href="/">Cadastrar</button>
+                            <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s4 offset-s4" href="/">Cadastrar</button>
                         </div>
+                        </form>
                 </div>
-            </div>
+            
         )
     }
 }

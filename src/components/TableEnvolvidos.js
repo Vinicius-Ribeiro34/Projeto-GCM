@@ -14,67 +14,84 @@ export default class TableEnvolvidos extends Component {
                             <table className="striped centered">
                                 <tbody>
                                     <tr>
-                                        <td>Condição da Parte:</td>
-                                        <td><strong>{e.condicaoDaParte}</strong></td>
-                                        <td>Conduzido:</td>
-                                        <td><strong>{e.conduzido ? "Sim" : "Não"}</strong></td>
+                                        <td><p><b>Condição da Parte:</b></p></td>
+                                        <td><p><strong>{e.condicaoDaParte}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Data Nascimento:</td>
-                                        <td><strong>{e.dataNascimento}</strong></td>
-                                        <td>Residencia:</td>
-                                        <td><strong>{e.endereco.residencia}</strong></td>
+                                        <td><p><b>Conduzido:</b></p></td>
+                                        <td><p><strong>{e.conduzido ? "Sim" : "Não"}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Numero:</td>
-                                        <td><strong>{e.endereco.numero}</strong></td>
-                                        <td>Bairro:</td>
-                                        <td><strong>{e.endereco.bairro}</strong></td>
+                                        <td><p><b>Data Nascimento:</b></p></td>
+                                        <td><p><strong>{e.dataNascimento}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Complemento:</td>
-                                        <td><strong>{e.endereco.complemento}</strong></td>
-                                        <td>Cidade:</td>
-                                        <td><strong>{e.endereco.cidade}</strong></td>
+                                        <td><p><b>Residencia:</b></p></td>
+                                        <td><p><strong>{e.endereco.residencia}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Estado:</td>
-                                        <td><strong>{e.endereco.estado}</strong></td>
-                                        <td>RG:</td>
-                                        <td><strong>{e.rg.numeroDoRG}</strong></td>
+                                        <td><p><b>Numero:</b></p></td>
+                                        <td><p><strong>{e.endereco.numero}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>UF:</td>
-                                        <td>{e.rg.estado}<strong></strong></td>
-                                        <td>Nacionalidade:</td>
-                                        <td><strong>{e.nacionalidade}</strong></td>
+                                        <td><p><b>Bairro:</b></p></td>
+                                        <td><p><strong>{e.endereco.bairro}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Naturalidade Cidade:</td>
-                                        <td><strong>{e.naturalidadeCidade}</strong></td>
-                                        <td>Naturalidade Estado:</td>
-                                        <td><strong>{e.naturalidadeEstado}</strong></td>
+                                        <td><p><b>Complemento:</b></p></td>
+                                        <td><p><strong>{e.endereco.complemento}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Pai:</td>
-                                        <td><strong>{e.pai}</strong></td>
-                                        <td>Mãe:</td>
-                                        <td><strong>{e.mae}</strong></td>
+                                        <td><p><b>Cidade:</b></p></td>
+                                        <td><p><strong>{e.endereco.cidade}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Local de Trabalho:</td>
-                                        <td><strong>{e.localDeTrabalho}</strong></td>
+                                        <td><p><b>Estado:</b></p></td>
+                                        <td><p><strong>{e.endereco.estado}</strong></p></td>
                                     </tr>
                                     <tr>
-                                        <td>Versão do Envolvido:</td>
-                                        <td><strong>{e.versaoDoEnvolvido}</strong></td>
+                                        <td><p><b>RG:</b></p></td>
+                                        <td><p><strong>{e.rg.numeroDoRG}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>UF:</b></p></td>
+                                        <td><p><strong>{e.rg.estado}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>Nacionalidade:</b></p></td>
+                                        <td><p><strong>{e.nacionalidade}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>Naturalidade Cidade:</b></p></td>
+                                        <td><p><strong>{e.naturalidadeCidade}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>Naturalidade Estado:</b></p></td>
+                                        <td><p><strong>{e.naturalidadeEstado}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>Pai:</b></p></td>
+                                        <td><p><strong>{e.pai}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>Mãe:</b></p></td>
+                                        <td><p><strong>{e.mae}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>Local de Trabalho:</b></p></td>
+                                        <td><p><strong>{e.localDeTrabalho}</strong></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p><b>Versão do Envolvido:</b></p></td>
+                                        <td><p><strong>{e.versaoDoEnvolvido}</strong></p></td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div >
                     )
-                })}
-            </Fragment>
+                })
+                }
+            </Fragment >
         );
     }
 }
