@@ -74,7 +74,7 @@ export default class BuscarOcorrencia extends Component {
                 <p className="titulo">Buscar Ocorrência</p>
                 <form className="col s10">
                     <div className="row">
-                        <div className="input-field col s6 offset-s2">
+                        <div className="input-field col s6 offset-s3">
                             <input name='id' onChange={this.handleChange} type="number" id="buscaId" />
                             <label htmlFor="buscaId">ID da Ocorrência</label>
                         </div>
