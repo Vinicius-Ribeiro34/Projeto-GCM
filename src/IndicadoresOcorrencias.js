@@ -105,11 +105,9 @@ export default class IndicadoresOcorrencias extends Component {
 
                 </div>
                 <br />
-                <form className="col s10">
-                    <div className="row">
-                        <button onClick={this.indicadores} className="waves-effect waves-light btn red darken-1 col s3 offset-s4" href="/">Voltar</button>
+                    <div className="centered">
+                        <button onClick={this.indicadores} className="waves-effect waves-light btn red darken-1 col s3" href="/">Voltar</button>
                     </div>
-                </form>
             </div>
         );
     }
