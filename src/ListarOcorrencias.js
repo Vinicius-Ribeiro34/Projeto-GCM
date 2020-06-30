@@ -13,10 +13,10 @@ export default class ListarOcorrencia extends Component {
     }
 
     componentDidMount() {
-        this.testeGet();
+        this.get();
     }
 
-    testeGet() {
+    get() {
         axios.get("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/")
             .then(res => {
                 this.setState({
@@ -28,12 +28,11 @@ export default class ListarOcorrencia extends Component {
             })
     }
 
-
     render() {
 
         return (
             <div className="container">
-                <p className="titulo">Lista de Ocorrências:</p>
+                <p className="titulo">Lista de Ocorrências</p>
                 <br />
                 <div>
                     {this.state.ocorrencias.map((oc, index) => {

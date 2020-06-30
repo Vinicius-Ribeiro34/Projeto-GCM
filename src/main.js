@@ -10,11 +10,12 @@ import BuscarOcorrencia from './BuscarOcorrencia'
 import ListarOcorrencias from './ListarOcorrencias'
 import PopUp from './components/PopUp'
 import { addBairros } from './services/bairros'
-import {addCodNat} from './services/codNat'
+import { addCodNat } from './services/codNat'
 import axios from 'axios'
 import Indicadores from './Indicadores'
 import IndicadoresRegiao from './IndicadoresRegiao'
 import IndicadoresOcorrencias from './IndicadoresOcorrencias'
+import Header from './components/Header'
 
 export default class Main extends Component {
 
@@ -71,7 +72,7 @@ export default class Main extends Component {
             .then(res => {
                 this.setState({
                     bairros: res.data
-                }); 
+                });
                 this.testeBairros()
             }).catch(res => {
                 console.log(res);
@@ -92,7 +93,7 @@ export default class Main extends Component {
 
     testeBairros = () => {
         this.state.bairros.map(bairro => {
-           return addBairros(bairro)
+            return addBairros(bairro)
         })
     }
 
@@ -133,6 +134,13 @@ export default class Main extends Component {
             'kmIrradiacao', 'kmLocal', 'kmPrimeiroTermino', 'kmSegundoTermino'];
 
         return !(campos.indexOf(value) === -1)
+    }
+
+    inicio = () => {
+
+        this.setState({
+            step: 7
+        })
     }
 
     gerarOcorrencia = () => {
@@ -310,7 +318,9 @@ export default class Main extends Component {
 
         if (step === 9) {
             return (
-                <ListarOcorrencias />
+                <ListarOcorrencias
+                    online={this.state.online}
+                />
             )
         }
 
@@ -340,6 +350,13 @@ export default class Main extends Component {
     render() {
         return (
             <div>
+                <Header
+                    inicio={this.inicio}
+                    gerarOcorrencia={this.gerarOcorrencia}
+                    buscarOcorrencia={this.buscarOcorrencia}
+                    listarOcorrencias={this.listarOcorrencias}
+                    indicadores={this.indicadores}
+                />
                 {this.showPage()}
             </div>
         )

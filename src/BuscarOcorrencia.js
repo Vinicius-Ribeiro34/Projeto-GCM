@@ -12,7 +12,6 @@ export default class BuscarOcorrencia extends Component {
             ocorrencia: {},
             id: '',
             show: 0,
-            show2: 1
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -80,10 +79,8 @@ export default class BuscarOcorrencia extends Component {
                             <label htmlFor="buscaId">ID da Ocorrência</label>
                         </div>
                         <div className="input-field col s1">
-                        <button onClick={this.get(this.state.id)} className="waves-effect waves-light btn red darken-1"><i className="material-icons">search</i></button>
+                        <button onClick={this.ocorrenciaGet(this.state.id)} className="waves-effect waves-light btn red darken-1"><i className="material-icons">search</i></button>
                         </div>
-                        <button onClick={this.ocorrenciaGet(this.state.id)} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Get</i></button>
-                        <button onClick={this.testePut} className="waves-effect waves-light btn red darken-1"><i className="material-icons">Put</i></button>
                         <br />
                     </div>
                 </form>
