@@ -46,3 +46,16 @@ export const getOcorrenciaById = (callback, id) => {
     }
   }
 }
+
+export const clearOcorrencia = () => {
+  const request = DB();
+
+  request.onerror = onRequestError;
+
+  request.onsuccess = (e) => {
+    const db = e.target.result;
+    const transaction = db.transaction(['ocorrencia'], 'readwrite');
+    const store = transaction.objectStore('ocorrencia');
+    store.clear()
+  }
+}

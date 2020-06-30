@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export default class IndicadoresRegiao extends Component {
 
-    get = id = e => {
-        e.preventDefault();
-    }
+    // get = id = e => {
+    //     e.preventDefault();
+    // }
 
     render() {
         return(

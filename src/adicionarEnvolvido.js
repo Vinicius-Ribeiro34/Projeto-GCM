@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import M from 'materialize-css';
-import axios from 'axios'
 import PopUp from './components/PopUp'
+import { getBairros } from './services/bairros'
 
 export default class AdicionarEnvolvido extends Component {
     constructor(props) {
@@ -47,7 +47,11 @@ export default class AdicionarEnvolvido extends Component {
     componentDidMount() {
         M.AutoInit();
 
-        this.fetchBairros();
+        getBairros(bairro => {
+            this.setState({
+                bairros: bairro
+            });
+          })
     }
 
     handleListCondicao(event) {
@@ -111,17 +115,6 @@ export default class AdicionarEnvolvido extends Component {
         this.props.adicionarEnvolvido();
 
         PopUp.exibeMensagem('success', "Envolvido cadastrado");
-    }
-
-    fetchBairros() {
-        axios.get('https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/bairros/')
-            .then(res => {
-                this.setState({
-                    bairros: res.data
-                });
-            }).catch(res => {
-                console.log(res);
-            });
     }
 
     mountOptions() {
