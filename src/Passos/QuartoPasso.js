@@ -1,26 +1,11 @@
 import React, { Component } from 'react'
 import AdicionarEnvolvido from '../adicionarEnvolvido';
-import axios from 'axios';
 
 export default class QuartoPasso extends Component {
 
     state = {
-        bairros: [],
         show: false,
         show2: true,
-
-        dados: [],
-    }
-
-    componentDidMount() {
-        axios.get("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/bairros", {
-        })
-        .then(res =>{
-            this.setState({bairros: res.data});
-            console.log(this.state.bairros);
-        });
-
-
     }
 
     back = e => {
@@ -45,7 +30,6 @@ export default class QuartoPasso extends Component {
     render() {
 
         const {values, handleChange} = this.props;
-        const bairros = this.state.bairros;
 
         return(
             <div className="container">
@@ -60,7 +44,7 @@ export default class QuartoPasso extends Component {
                             {this.state.show2 && <button onClick={this.adicionarEnvolvido} className="waves-effect waves-light btn-large grey App"><i className="material-icons left large">add</i>Adicionar Envolvido</button>}
                         </div>
                         <br/>
-                        {this.state.show && <AdicionarEnvolvido adicionarEnvolvido={this.adicionarEnvolvido} handleChange={handleChange} values={values} bairros={bairros} />}
+                        {this.state.show && <AdicionarEnvolvido adicionarEnvolvido={this.adicionarEnvolvido} handleChange={handleChange} values={values}/>}
                         <br/>
                     </div>
                     <form className="col s10">

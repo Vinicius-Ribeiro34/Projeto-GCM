@@ -11,6 +11,7 @@ import ListarOcorrencias from './ListarOcorrencias'
 import PopUp from './components/PopUp'
 import { addBairros } from './services/bairros'
 import { addCodNat } from './services/codNat'
+import { clearOcorrencia, get } from './services/ocorrencia'
 import axios from 'axios'
 import Indicadores from './Indicadores'
 import IndicadoresRegiao from './IndicadoresRegiao'
@@ -56,7 +57,8 @@ export default class Main extends Component {
         online: true,
 
         bairros: [],
-        ocorrenciasOnline: []
+        ocorrenciasOnline: [],
+        getOcorrencias: []
     }
 
     componentDidMount() {
@@ -65,6 +67,26 @@ export default class Main extends Component {
 
         this.fetchBairros();
         this.fetchOcorrencias();
+
+        if (this.state.online === true) {
+            get(ocorrencia => {
+                this.setState({
+                    getOcorrencias: ocorrencia
+                }); this.boletimPost();
+            })
+
+            clearOcorrencia();
+        }
+    }
+
+    boletimPost() {
+        this.state.getOcorrencias.map(oc => {
+            return axios.post("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins", oc,
+            { headers: { 'Content-Type': 'application/json' } })
+            .then(response => {
+                console.log(response)
+            }).catch((error) => console.log(error.response));
+        })
     }
 
     fetchBairros() {
