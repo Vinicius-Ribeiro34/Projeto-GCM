@@ -78,7 +78,6 @@ export default class AdicionarVeiculo extends Component {
         return (
             
                 <div className="section">
-                    <form className="col s10">
                         <div className="row">
                             <div className="input-field col s10 offset-s1">
                                 <select className="browser-default" value={this.state.ocorrencia.id} onChange={this.handleList}>
@@ -96,7 +95,6 @@ export default class AdicionarVeiculo extends Component {
                         <div className="row">
                             <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s4 offset-s4" href="/">Cadastrar</button>
                         </div>
-                        </form>
                 </div>
             
         )

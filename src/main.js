@@ -54,7 +54,7 @@ export default class Main extends Component {
         envolvidos: [],
         veiculos: [],
 
-        online: true,
+        online: false,
 
         bairros: [],
         ocorrenciasOnline: [],
@@ -62,6 +62,17 @@ export default class Main extends Component {
     }
 
     componentDidMount() {
+
+        if (navigator.onLine) {
+            this.setState({
+                online: true
+            })
+        } else {
+            this.setState({
+                online: false
+            });
+        }
+
         window.addEventListener('online', this.online)
         window.addEventListener('offline', this.offline)
 
@@ -130,6 +141,14 @@ export default class Main extends Component {
         this.setState({
             online: true
         })
+
+        get(ocorrencia => {
+            this.setState({
+                getOcorrencias: ocorrencia
+            }); this.boletimPost();
+        })
+
+        clearOcorrencia();
     }
 
     offline = () => {

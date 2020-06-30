@@ -1,7 +1,7 @@
 import React, { Component,Fragment } from 'react';
+import {getCodNat, getCodNatById} from '../services/codNat'
 
 export default class TableOcorrencia extends Component {
-
 
     render() {
 
@@ -50,15 +50,15 @@ export default class TableOcorrencia extends Component {
                         </tr>
                         <tr>
                             <td>Natureza da Ocorrência:</td>
-                            <td><strong>{values.naturezaDaOcorrencia}</strong></td>
+                            <td><strong>{values.ocorrencias.naturezaDaOcorrencia}</strong></td>
                             <td>Código:</td>
-                            <td><strong>{values.codigoDaOcorrencia}</strong></td>
+                            <td><strong>{values.ocorrencias.codigoDaOcorrencia}</strong></td>
                         </tr>
                         <tr>
                             <td>Local:</td>
                             <td><strong>{values.local}</strong></td>
                             <td>Bairro:</td>
-                            <td><strong>{/*values.bairro*/}</strong></td>
+                            {/* <td><strong>{values.bairro}</strong></td> */}
                         </tr>
                     </tbody>
                 </table>

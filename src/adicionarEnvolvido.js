@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import M from 'materialize-css';
 import PopUp from './components/PopUp'
-import { getBairros } from './services/bairros'
 
 export default class AdicionarEnvolvido extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            bairros: [],
             envolvido: {
                 nome: '',
                 condicaoDaParte: '',
@@ -41,31 +39,15 @@ export default class AdicionarEnvolvido extends Component {
         this.cadastrar = this.cadastrar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleListCondicao = this.handleListCondicao.bind(this)
-        this.handleListBairros = this.handleListBairros.bind(this)
     }
 
     componentDidMount() {
         M.AutoInit();
-
-        getBairros(bairro => {
-            this.setState({
-                bairros: bairro
-            });
-          })
     }
 
     handleListCondicao(event) {
         const envolvido = {...this.state.envolvido}
         envolvido.condicaoDaParte = event.target.value;
-
-        this.setState({
-            envolvido
-        })
-    }
-
-    handleListBairros(event) {
-        const envolvido = {...this.state.envolvido};
-        envolvido.endereco.bairro = parseInt(event.target.value);
 
         this.setState({
             envolvido
@@ -115,14 +97,6 @@ export default class AdicionarEnvolvido extends Component {
         this.props.adicionarEnvolvido();
 
         PopUp.exibeMensagem('success', "Envolvido cadastrado");
-    }
-
-    mountOptions() {
-        return (
-            this.state.bairros.map((bairro) => {
-                return <option key={bairro.id} value={bairro.id}>{bairro.nome}</option>
-            })
-        )
     }
 
     render() {
@@ -357,9 +331,15 @@ export default class AdicionarEnvolvido extends Component {
                                 <label htmlFor="enderecoResidencia">Residencia</label>
                             </div>
                             <div className="input-field col s5">
-                                <select className="browser-default" value={this.state.envolvido.endereco.bairro} onChange={this.handleListBairros}>
-                                    {this.mountOptions()}
-                                </select>
+                                <input
+                                    name='endereco_bairro'
+                                    id="enderecoBairro"
+                                    type="text"
+                                    className="validate"
+                                    onChange={this.handleChange}
+                                    value={this.state.envolvido.endereco.bairro}
+                                />
+                                <label htmlFor="enderecoBairro">Bairro</label>
                             </div>
                         </div>
                         <div className="row">
