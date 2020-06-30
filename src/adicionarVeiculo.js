@@ -135,13 +135,12 @@ export default class AdicionarVeiculo extends Component {
                         </div>
                         <div className="row">
                             <div className="input-field col s8 offset-s2">
-                                <select value={this.state.dano} onChange={this.handleList}>
-                                    <option value="">Selecione</option>
+                                <select className="browser-default" value={this.state.dano} onChange={this.handleList}>
+                                    <option value="">Dano</option>
                                     <option value="PEQUENA_MONTA">Pequeno</option>
                                     <option value="MEDIA_MONTA">Médio</option>
                                     <option value="GRANDE_MONTA">Grande</option>
                                 </select>
-                                <label>Dano</label>
                             </div>
                         </div>
                         <div className="row">

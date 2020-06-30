@@ -17,6 +17,11 @@ export default class IndicadoresRegiao extends Component {
         this.handleList = this.handleList.bind(this);
     }
 
+    indicadores = e => {
+        e.preventDefault();
+        this.props.indicadores();
+    }
+
     componentDidMount() {
         getBairros(bairros => {
             this.setState({
@@ -97,6 +102,12 @@ export default class IndicadoresRegiao extends Component {
                     })}
 
                 </div>
+                <br />
+                <form className="col s10">
+                    <div className="row">
+                        <button onClick={this.indicadores} className="waves-effect waves-light btn red darken-1 col s3 offset-s5" href="/">Voltar</button>
+                    </div>
+                </form>
             </div>
 
         );

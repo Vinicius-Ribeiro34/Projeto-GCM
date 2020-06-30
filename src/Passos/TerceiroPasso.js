@@ -98,6 +98,7 @@ export default class TerceiroPasso extends Component {
                         <div className="row">
                             <div className="input-field col s8 offset-s2">
                                 <select className="browser-default" value={this.state.bairro} onChange={this.handleList}>
+                                    <option value="">Bairro</option>
                                     {this.mountOptions()}
                                 </select>
                             </div>

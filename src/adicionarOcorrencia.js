@@ -79,15 +79,18 @@ export default class AdicionarVeiculo extends Component {
             
                 <div className="section">
                         <div className="row">
-                            <div className="input-field col s10 offset-s1">
-                                <select className="browser-default" value={this.state.ocorrencia.id} onChange={this.handleList}>
+                            <div className="input-field col s8 offset-s2">
+                                <select className="browser-default" id="selectCodigo" value={this.state.ocorrencia.id} onChange={this.handleList}>
+                                    <option value="">Código</option>
                                     {this.mountOptionsCodigo()}
                                 </select>
+                                
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s8 offset-s2">
                                 <select className="browser-default" value={this.state.ocorrencia.id} onChange={this.handleList}>
+                                <option value="">Natureza</option>
                                     {this.mountOptionsNatureza()}
                                 </select>
                             </div>

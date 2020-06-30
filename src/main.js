@@ -106,7 +106,7 @@ export default class Main extends Component {
                 this.setState({
                     bairros: res.data
                 });
-                this.testeBairros()
+                this.mBairros()
             }).catch(res => {
                 console.log(res);
             });
@@ -118,19 +118,19 @@ export default class Main extends Component {
                 this.setState({
                     ocorrenciasOnline: res.data
                 });
-                this.testeOcorrencias()
+                this.mOcorrencias()
             }).catch(res => {
                 console.log(res);
             });
     }
 
-    testeBairros = () => {
+    mBairros = () => {
         this.state.bairros.map(bairro => {
             return addBairros(bairro)
         })
     }
 
-    testeOcorrencias = () => {
+    mOcorrencias = () => {
         this.state.ocorrenciasOnline.map(ocorrencia => {
             return addCodNat(ocorrencia)
         })
@@ -332,6 +332,7 @@ export default class Main extends Component {
                         values={values}
                         online={this.state.online}
                         step={this.state.step}
+                        inicio={this.inicio}
                     />
                 </div>
             )
@@ -376,13 +377,13 @@ export default class Main extends Component {
 
         if (step === 11) {
             return (
-                <IndicadoresRegiao />
+                <IndicadoresRegiao indicadores={this.indicadores} />
             )
         }
 
         if (step === 12) {
             return (
-                <IndicadoresOcorrencias />
+                <IndicadoresOcorrencias indicadores={this.indicadores}/>
             )
         }
 

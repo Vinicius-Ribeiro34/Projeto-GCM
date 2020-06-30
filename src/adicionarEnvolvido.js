@@ -130,9 +130,10 @@ export default class AdicionarEnvolvido extends Component {
                             </div>
                         </div>
                         <div className="row">
+                        
                             <div className="input-field col s5 offset-s1">
-                                <select value={this.state.envolvido.condicaoDaParte} onChange={this.handleListCondicao}>
-                                    <option value="">Selecione</option>
+                                <select className="browser-default" value={this.state.envolvido.condicaoDaParte} onChange={this.handleListCondicao}>
+                                    <option value="">Condição da Parte</option>
                                     <option value="VITIMA">Vítima</option>
                                     <option value="AUTOR">Autor</option>
                                     <option value="INDICIADO">Indiciado</option>
@@ -145,7 +146,7 @@ export default class AdicionarEnvolvido extends Component {
                                     <option value="PARTE">Parte</option>
                                     <option value="INDEFINIDA">Indefinida</option>  
                                 </select>
-                                <label>Condição da parte</label>
+                                
                             </div>
                             <div className="input-field col s5">
                                 <p>

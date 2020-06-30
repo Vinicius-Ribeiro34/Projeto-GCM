@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {add} from '../services/ocorrencia'
 import Table from '../Table'
 import axios from 'axios'
+import PopUp from '../components/PopUp'
 
 export default class PassoFinal extends Component {
     state = {
@@ -18,6 +19,7 @@ export default class PassoFinal extends Component {
         const online = this.props.online;
         if(online === false) {
             add(this.props.values)
+            PopUp.exibeMensagem('success', "Ocorrência Registrada")
         } else {
             this.boletimPost();
         }
@@ -29,8 +31,12 @@ export default class PassoFinal extends Component {
         axios.post("https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins", this.props.values,
             { headers: { 'Content-Type': 'application/json' } })
             .then(response => {
+                PopUp.exibeMensagem('success', "Ocorrência Registrada")
                 console.log(response)
-            }).catch((error) => console.log(error.response));
+            }).catch((error) => {
+                PopUp.exibeMensagem('error', "Erro ao Registrar");
+                console.log(error.response)
+            });
     }
 
     render() {
@@ -53,7 +59,7 @@ export default class PassoFinal extends Component {
                 <form className="col s10">
                     <div className="row">
                 <button onClick={this.back} className="waves-effect waves-light btn red darken-1 col s3 offset-s2 espaco">Voltar</button>
-                <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Cadastrar</button>
+                <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Registrar</button>
                 </div>
                 </form>
             </div>
