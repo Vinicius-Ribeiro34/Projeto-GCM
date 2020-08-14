@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 export default class PrimeiroPasso extends Component {
     continue = e => {
         e.preventDefault();
         this.props.nextStep();
     }
+
+
 
     render() {
 
@@ -83,7 +86,9 @@ export default class PrimeiroPasso extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <button className="waves-effect waves-light btn red darken-1 col s3 offset-s2" href="/">Voltar</button>
+                            <Link to='/'>
+                                <button onClick={this.props.resetStep} className="waves-effect waves-light btn red darken-1 col s3 offset-s2" href="/">Voltar</button>
+                            </Link>
                             <button onClick={this.continue} className="waves-effect waves-light btn green darken-1 col s3 offset-s2" href="/">Proximo</button>
                         </div>
                     </form>

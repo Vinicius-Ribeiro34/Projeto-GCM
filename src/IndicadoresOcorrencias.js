@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {getCodNat} from './services/codNat'
 import PopUp from './components/PopUp'
-
+import { Link } from 'react-router-dom';
 
 export default class IndicadoresOcorrencias extends Component {
 
@@ -61,7 +61,6 @@ export default class IndicadoresOcorrencias extends Component {
             })
     }
 
-
     render() {
         return(
             <div className="container">
@@ -89,12 +88,12 @@ export default class IndicadoresOcorrencias extends Component {
                                 <table className="striped centered">
                                     <thead>
                                         <tr>
-                                            <th><p>Bairro: {oc.nome}</p></th>
+                                            <th>Bairro: {oc.nome}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr><p>Quantidade de Boletins: {oc.quantidade}</p></tr>
-                                        <tr><p>Percentual: {oc.percentual}</p></tr>
+                                        <tr><td>Quantidade de Boletins: {oc.quantidade}</td></tr>
+                                        <tr><td>Percentual: {oc.percentual}</td></tr>
                                     </tbody>
                                 </table>
                                 <br />
@@ -106,7 +105,9 @@ export default class IndicadoresOcorrencias extends Component {
                 </div>
                 <br />
                     <div className="centered">
-                        <button onClick={this.indicadores} className="waves-effect waves-light btn red darken-1 col s3" href="/">Voltar</button>
+                        <Link to='/indicadores'>
+                            <button className="waves-effect waves-light btn red darken-1 col s3" href="/">Voltar</button>
+                        </Link>
                     </div>
             </div>
         );

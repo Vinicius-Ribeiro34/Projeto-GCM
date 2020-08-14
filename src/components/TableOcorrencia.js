@@ -1,5 +1,4 @@
 import React, { Component,Fragment } from 'react';
-import {getCodNat, getCodNatById} from '../services/codNat'
 
 export default class TableOcorrencia extends Component {
 

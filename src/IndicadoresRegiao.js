@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getBairros } from './services/bairros';
 import axios from 'axios';
 import PopUp from './components/PopUp'
+import { Link } from 'react-router-dom';
 
 export default class IndicadoresRegiao extends Component {
 
@@ -86,13 +87,13 @@ export default class IndicadoresRegiao extends Component {
                                 <table className="striped centered">
                                     <thead>
                                         <tr>
-                                            <th><p>Natureza da Ocorrência: {oc.naturezaDaOcorrencia}</p></th>
+                                            <th>Natureza da Ocorrência: {oc.naturezaDaOcorrencia}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr><p><b>Código da Ocorrência {oc.codigoDaOcorrencia}</b></p></tr>
-                                        <tr><p>Quantidade de Boletins: {oc.quantidade}</p></tr>
-                                        <tr><p>Percentual: {oc.percentual}</p></tr>
+                                        <tr><td><b>Código da Ocorrência {oc.codigoDaOcorrencia}</b></td></tr>
+                                        <tr><td>Quantidade de Boletins: {oc.quantidade}</td></tr>
+                                        <tr><td>Percentual: {oc.percentual}</td></tr>
                                     </tbody>
                                 </table>
                                 <br />
@@ -105,7 +106,9 @@ export default class IndicadoresRegiao extends Component {
                 <br />
                 
                     <div className="centered">
-                        <button onClick={this.indicadores} className="waves-effect waves-light btn red darken-1 col s3" href="/">Voltar</button>
+                        <Link to='/indicadores'>
+                            <button className="waves-effect waves-light btn red darken-1 col s3" href="/">Voltar</button>
+                        </Link>
                     </div>
                 
             </div>

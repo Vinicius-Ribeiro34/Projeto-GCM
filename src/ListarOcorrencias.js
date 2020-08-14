@@ -41,18 +41,18 @@ export default class ListarOcorrencia extends Component {
                                 <table className="striped centered">
                                     <thead>
                                         <tr>
-                                            <th><p>Número da Ocorrência: {oc.numeroDaOcorrencia}</p></th>
+                                            <th>Número da Ocorrência: {oc.numeroDaOcorrencia}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <p><b>ID da Ocorrência: {oc.id}</b></p>
+                                            <td><b>ID da Ocorrência: {oc.id}</b></td>
                                         </tr>
                                         {oc.ocorrencias.map((o, index) => {
                                             return (
-                                                <Fragment>
-                                                <tr><p>Natureza: {o.naturezaDaOcorrencia}</p></tr>
-                                                <tr><p>Código da Ocorrencia: {o.codigoDaOcorrencia}</p></tr>
+                                                <Fragment key={index}>
+                                                <tr><td>Natureza: {o.naturezaDaOcorrencia}</td></tr>
+                                                <tr><td>Código da Ocorrencia: {o.codigoDaOcorrencia}</td></tr>
                                                 </Fragment>
                                         )
                                         })}

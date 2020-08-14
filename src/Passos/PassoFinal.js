@@ -3,6 +3,7 @@ import {add} from '../services/ocorrencia'
 import Table from '../Table'
 import axios from 'axios'
 import PopUp from '../components/PopUp'
+import { Link } from 'react-router-dom'
 
 export default class PassoFinal extends Component {
     state = {
@@ -14,8 +15,7 @@ export default class PassoFinal extends Component {
         this.props.prevStep();
     }
 
-    cadastrar = (e) => {
-        e.preventDefault()
+    cadastrar = () => {
         const online = this.props.online;
         if(online === false) {
             add(this.props.values)
@@ -24,7 +24,10 @@ export default class PassoFinal extends Component {
             this.boletimPost();
         }
        
-        console.log(this.props.values)
+        console.log(this.props.values);
+
+        this.props.clearState();
+        this.props.resetStep();
     }
 
     boletimPost() {
@@ -59,7 +62,9 @@ export default class PassoFinal extends Component {
                 <form className="col s10">
                     <div className="row">
                 <button onClick={this.back} className="waves-effect waves-light btn red darken-1 col s3 offset-s2 espaco">Voltar</button>
-                <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Registrar</button>
+                <Link to='/'>
+                    <button onClick={this.cadastrar} className="waves-effect waves-light btn green darken-1 col s3 offset-s2 espaco">Registrar</button>
+                </Link>
                 </div>
                 </form>
             </div>
