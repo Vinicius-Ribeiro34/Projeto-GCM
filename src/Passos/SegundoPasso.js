@@ -121,7 +121,7 @@ export default class SegundoPasso extends Component {
                                 <label htmlFor="km-termino2">Km 2º Término</label>
                             </div>
                             <div className="row">
-                                <button onClick={this.back} className="waves-effect waves-light btn red darken-1 col s3 offset-s2" href="/">Voltar</button>
+                                <button onClick={this.back} className="waves-effect waves-light btn blue darken-4 col s3 offset-s2" href="/">Voltar</button>
                                 <button onClick={this.continue} className="waves-effect waves-light btn green darken-1 col s3 offset-s2" href="/">Proximo</button>
                             </div>
                         </div>

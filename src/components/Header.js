@@ -14,7 +14,7 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper red darken-1">
+        <div className="nav-wrapper blue darken-4">
           <Link
             to="/"
             className="brand-logo hide-on-med-and-down"

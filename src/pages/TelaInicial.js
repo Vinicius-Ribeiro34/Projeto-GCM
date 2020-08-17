@@ -16,7 +16,7 @@ export default class TelaInicial extends Component {
           <div className="row">
             <div className="espaco">
               <Link to="/registrar-ocorrencia">
-                <button className="waves-effect waves-light btn-large red App col s8 offset-s2">
+                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
                   <i className="material-icons left large">add_box</i>Registrar
                   Ocorrência
                 </button>
@@ -26,7 +26,7 @@ export default class TelaInicial extends Component {
           <div className="row">
             <div className="espaco">
               <Link to="/buscar-ocorrencia">
-                <button className="waves-effect waves-light btn-large red App col s8 offset-s2">
+                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
                   <i className="material-icons left large">search</i>Buscar
                   Ocorrência
                 </button>
@@ -36,7 +36,7 @@ export default class TelaInicial extends Component {
           <div className="row">
             <div className="espaco">
               <Link to="/listar-ocorrencia">
-                <button className="waves-effect waves-light btn-large red App col s8 offset-s2">
+                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
                   <i className="material-icons left large">view_list</i>Listar
                   Ocorrências
                 </button>
@@ -46,7 +46,7 @@ export default class TelaInicial extends Component {
           <div className="row">
             <div className="espaco">
               <Link to="/indicadores">
-                <button className="waves-effect waves-light btn-large red App col s8 offset-s2">
+                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
                   <i className="material-icons left large">assignment</i>
                   Indicadores
                 </button>

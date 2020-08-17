@@ -87,7 +87,7 @@ export default class PrimeiroPasso extends Component {
                         </div>
                         <div className="row">
                             <Link to='/'>
-                                <button onClick={this.props.resetStep} className="waves-effect waves-light btn red darken-1 col s3 offset-s2" href="/">Voltar</button>
+                                <button onClick={this.props.resetStep} className="waves-effect waves-light btn blue darken-4 col s3 offset-s2" href="/">Voltar</button>
                             </Link>
                             <button onClick={this.continue} className="waves-effect waves-light btn green darken-1 col s3 offset-s2" href="/">Proximo</button>
                         </div>
