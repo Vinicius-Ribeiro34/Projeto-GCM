@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { getBairros } from "../services/bairros";
-import axios from "axios";
 import PopUp from "../components/PopUp";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 
 export default class IndicadoresRegiao extends Component {
   constructor(props) {
@@ -50,11 +50,14 @@ export default class IndicadoresRegiao extends Component {
     e.preventDefault();
     const id = this.state.bairro;
 
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/http://gcm-mogi.herokuapp.com/bairros/indicadores/" +
-          id
-      )
+    const token = window.localStorage.getItem("token");
+
+    api
+      .get("/bairros/indicadores/" + id, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         this.setState({
           ocorrencias: res.data,

@@ -86,6 +86,7 @@ export default class AdicionarVeiculo extends Component {
               id="selectCodigo"
               value={this.state.ocorrencia.id}
               onChange={this.handleList}
+              required
             >
               <option value="">Código</option>
               {this.mountOptionsCodigo()}
@@ -98,6 +99,7 @@ export default class AdicionarVeiculo extends Component {
               className="browser-default"
               value={this.state.ocorrencia.id}
               onChange={this.handleList}
+              required
             >
               <option value="">Natureza</option>
               {this.mountOptionsNatureza()}

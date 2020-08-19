@@ -101,7 +101,7 @@ export default class AdicionarEnvolvido extends Component {
   render() {
     return (
       <div className="section">
-        <form className="col s10">
+        <form onSubmit={this.cadastrar} className="col s10">
           <div className="row">
             <div className="input-field col s5 offset-s1">
               <input
@@ -111,6 +111,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.nome}
+                required
               />
               <label htmlFor="nome">Nome Envolvido</label>
             </div>
@@ -122,6 +123,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.dataNascimento}
+                required
               />
               <label htmlFor="nascimento">Data de Nascimento</label>
             </div>
@@ -133,7 +135,9 @@ export default class AdicionarEnvolvido extends Component {
                 value={this.state.envolvido.condicaoDaParte}
                 onChange={this.handleListCondicao}
               >
-                <option value="">Condição da Parte</option>
+                <option disabled value="">
+                  Condição da Parte
+                </option>
                 <option value="VITIMA">Vítima</option>
                 <option value="AUTOR">Autor</option>
                 <option value="INDICIADO">Indiciado</option>
@@ -157,6 +161,7 @@ export default class AdicionarEnvolvido extends Component {
                     className="filled-in validate"
                     onChange={this.handleChange}
                     value={this.state.envolvido.conduzido}
+                    required
                   />
                   <span>Conduzido</span>
                 </label>
@@ -172,6 +177,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.telefone}
+                required
               />
               <label htmlFor="telefone">Telefone</label>
             </div>
@@ -183,6 +189,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.rg.numeroDoRG}
+                required
               />
               <label htmlFor="rg">Numero RG</label>
             </div>
@@ -196,6 +203,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.rg.orgaoExpedidor}
+                required
               />
               <label htmlFor="orgaoExpedidor">Orgão Expedidor</label>
             </div>
@@ -207,6 +215,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.rg.estado}
+                required
               />
               <label htmlFor="estado">Estado</label>
             </div>
@@ -220,6 +229,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.nacionalidade}
+                required
               />
               <label htmlFor="nacionalidade">Nacionalidade</label>
             </div>
@@ -231,6 +241,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.naturalidadeEstado}
+                required
               />
               <label htmlFor="naturalidadeEstado">Naturalidade Estado</label>
             </div>
@@ -244,6 +255,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.naturalidadeCidade}
+                required
               />
               <label htmlFor="naturalidadeCidade">Naturalidade Cidade</label>
             </div>
@@ -255,6 +267,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.localDeTrabalho}
+                required
               />
               <label htmlFor="localDeTrabalho">Local de Trabalho</label>
             </div>
@@ -268,6 +281,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.pai}
+                required
               />
               <label htmlFor="pai">Pai</label>
             </div>
@@ -279,6 +293,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.mae}
+                required
               />
               <label htmlFor="mae">Mae</label>
             </div>
@@ -290,6 +305,7 @@ export default class AdicionarEnvolvido extends Component {
                   className="validate materialize-textarea"
                   onChange={this.handleChange}
                   value={this.state.envolvido.versaoDoEnvolvido}
+                  required
                 />
                 <label htmlFor="versaoDoEnvolvido">Versão do Envolvido</label>
               </div>
@@ -305,6 +321,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.endereco.estado}
+                required
               />
               <label htmlFor="enderecoEstado">Estado</label>
             </div>
@@ -316,6 +333,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.endereco.cidade}
+                required
               />
               <label htmlFor="enderecoCidade">Cidade</label>
             </div>
@@ -329,6 +347,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.endereco.residencia}
+                required
               />
               <label htmlFor="enderecoResidencia">Residencia</label>
             </div>
@@ -340,6 +359,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.endereco.bairro}
+                required
               />
               <label htmlFor="enderecoBairro">Bairro</label>
             </div>
@@ -353,6 +373,7 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.endereco.numero}
+                required
               />
               <label htmlFor="enderecoNumero">Numero</label>
             </div>
@@ -364,13 +385,14 @@ export default class AdicionarEnvolvido extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.envolvido.endereco.complemento}
+                required
               />
               <label htmlFor="enderecoComplemento">Complemento</label>
             </div>
           </div>
           <div className="row">
             <button
-              onClick={this.cadastrar}
+              type="submit"
               className="waves-effect waves-light btn green darken-1 col s4 offset-s4"
               href="/"
             >

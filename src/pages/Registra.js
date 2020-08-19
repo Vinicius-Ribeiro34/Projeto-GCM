@@ -6,6 +6,7 @@ import QuintoPasso from "../Passos/QuintoPasso";
 import PassoFinal from "../Passos/PassoFinal";
 import TelaInicial from "./TelaInicial";
 import SegundoPasso from "../Passos/SegundoPasso";
+import api from "../services/api";
 
 export default class Registra extends Component {
   initialState = {
@@ -23,9 +24,7 @@ export default class Registra extends Component {
     kmPrimeiroTermino: "",
     kmSegundoTermino: "",
     relatorioDaGCM: "",
-    oficial: {
-      id: 1,
-    },
+    oficial: {},
     ocorrencias: [],
     local: "",
     bairro: {
@@ -39,6 +38,28 @@ export default class Registra extends Component {
     super(props);
 
     this.state = this.initialState;
+  }
+
+  async componentDidMount() {
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await api.get("oficiais/meus-dados", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      this.setState((prev) => ({
+        ...prev,
+        oficial: {
+          ...prev.oficial,
+          id: response.data.id,
+        },
+      }));
+
+      console.log(this.state.oficial);
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   clearState = () => {

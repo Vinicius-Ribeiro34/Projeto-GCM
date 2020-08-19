@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { getOcorrenciaById } from "../services/ocorrencia";
-import axios from "axios";
 import Table from "../components/Table";
 import PopUp from "../components/PopUp";
+import api from "../services/api";
 
 export default class BuscarOcorrencia extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class BuscarOcorrencia extends Component {
       ocorrencia: {},
       id: "",
       show: 0,
+      token: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,6 +21,12 @@ export default class BuscarOcorrencia extends Component {
 
   componentDidMount() {
     console.log(this.props.online ? "Está online" : "Não está");
+    console.log(this.props.online);
+
+    const tokenStorage = window.localStorage.getItem("token");
+    this.setState({
+      token: tokenStorage,
+    });
   }
 
   ocorrenciaGet = (id) => (e) => {
@@ -42,11 +49,12 @@ export default class BuscarOcorrencia extends Component {
       }, id);
     } else {
       const id = this.state.id;
-      axios
-        .get(
-          "https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/" +
-            id
-        )
+      api
+        .get("boletins/" + id, {
+          headers: {
+            Authorization: "Bearer " + this.state.token,
+          },
+        })
         .then((res) => {
           this.setState({
             ocorrencia: res.data,

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { getCodNat } from "../services/codNat";
 import PopUp from "../components/PopUp";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 
 export default class IndicadoresOcorrencias extends Component {
   constructor(props) {
@@ -49,12 +49,14 @@ export default class IndicadoresOcorrencias extends Component {
   get = (e) => {
     e.preventDefault();
     const id = this.state.codigo;
+    const token = window.localStorage.getItem("token");
 
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/http://gcm-mogi.herokuapp.com/ocorrencias/indicadores/" +
-          id
-      )
+    api
+      .get("ocorrencias/indicadores/" + id, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         this.setState({
           ocorrencias: res.data,

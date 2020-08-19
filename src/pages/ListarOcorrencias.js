@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 export default class ListarOcorrencia extends Component {
   constructor(props) {
@@ -16,10 +16,13 @@ export default class ListarOcorrencia extends Component {
   }
 
   get() {
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins/"
-      )
+    const token = window.localStorage.getItem("token");
+    api
+      .get("boletins", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         this.setState({
           ocorrencias: res.data,

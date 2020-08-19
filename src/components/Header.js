@@ -11,6 +11,10 @@ class Header extends Component {
     M.Sidenav.init(elems, options);
   }
 
+  logOut = () => {
+    window.localStorage.removeItem("token");
+  };
+
   render() {
     return (
       <nav>
@@ -22,7 +26,7 @@ class Header extends Component {
           >
             GCM
           </Link>
-          <Link to="/" className="brand-logo hide-on-large-only">
+          <Link to="/home" className="brand-logo hide-on-large-only">
             GCM
           </Link>
           <a href="/" data-target="mobile-demo" className="sidenav-trigger">
@@ -41,6 +45,14 @@ class Header extends Component {
             <li>
               <Link to="/indicadores">Indicadores</Link>
             </li>
+            <li>
+              <Link to="/login" onClick={this.logOut}>
+                Sair
+              </Link>
+              {/* <Link to="/" onClick={this.logOut}>
+                Sair
+              </Link> */}
+            </li>
           </ul>
           <ul className="sidenav" id="mobile-demo">
             <li>
@@ -54,6 +66,11 @@ class Header extends Component {
             </li>
             <li>
               <Link to="/indicadores">Indicadores</Link>
+            </li>
+            <li>
+              <Link to="/" onClick={this.logOut}>
+                Sair
+              </Link>
             </li>
           </ul>
         </div>

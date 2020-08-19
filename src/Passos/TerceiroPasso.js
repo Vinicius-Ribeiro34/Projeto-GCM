@@ -79,7 +79,7 @@ export default class TerceiroPasso extends Component {
         </div>
         <div className="divider"></div>
         <div className="section">
-          <form className="col s10">
+          <form onSubmit={this.continue} className="col s10">
             <div className="center-align">
               {this.state.show2 && (
                 <button
@@ -108,6 +108,7 @@ export default class TerceiroPasso extends Component {
                   className="validate"
                   onChange={handleChange("local")}
                   value={values.local}
+                  required
                 />
                 <label htmlFor="local">Local</label>
               </div>
@@ -118,8 +119,11 @@ export default class TerceiroPasso extends Component {
                   className="browser-default"
                   value={this.state.bairro}
                   onChange={this.handleList}
+                  required
                 >
-                  <option value="">Bairro</option>
+                  <option disabled value="">
+                    Bairro
+                  </option>
                   {this.mountOptions()}
                 </select>
               </div>
@@ -133,7 +137,6 @@ export default class TerceiroPasso extends Component {
                 Voltar
               </button>
               <button
-                onClick={this.continue}
                 className="waves-effect waves-light btn green darken-1 col s3 offset-s2"
                 href="/"
               >

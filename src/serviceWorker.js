@@ -34,6 +34,8 @@ let arquivos = [
   "src/services/databaseCodNat.js",
   "src/services/databaseOcorrencia.js",
   "src/services/ocorrencia.js",
+  "src/services/api.js",
+  "src/routes/Route.js",
   "src/sw/registra.js",
   "public/brazao192.png",
   "public/brazao512.png",

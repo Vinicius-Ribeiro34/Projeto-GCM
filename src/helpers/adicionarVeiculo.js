@@ -65,7 +65,7 @@ export default class AdicionarVeiculo extends Component {
   render() {
     return (
       <div className="section">
-        <form className="col s10">
+        <form onSubmit={this.cadastrar} className="col s10">
           <div className="row">
             <div className="input-field col s8 offset-s2">
               <input
@@ -75,6 +75,7 @@ export default class AdicionarVeiculo extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.placa}
+                required
               />
               <label htmlFor="placa">Placa</label>
             </div>
@@ -88,6 +89,7 @@ export default class AdicionarVeiculo extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.modelo}
+                required
               />
               <label htmlFor="modelo">Modelo</label>
             </div>
@@ -101,6 +103,7 @@ export default class AdicionarVeiculo extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.ano}
+                required
               />
               <label htmlFor="ano">Ano</label>
             </div>
@@ -127,6 +130,7 @@ export default class AdicionarVeiculo extends Component {
                 className="validate"
                 onChange={this.handleChange}
                 value={this.state.codRenavam}
+                required
               />
               <label htmlFor="codigoRenavam">Código Renavam</label>
             </div>
@@ -137,8 +141,11 @@ export default class AdicionarVeiculo extends Component {
                 className="browser-default"
                 value={this.state.dano}
                 onChange={this.handleList}
+                required
               >
-                <option value="">Dano</option>
+                <option disabled value="">
+                  Dano
+                </option>
                 <option value="PEQUENA_MONTA">Pequeno</option>
                 <option value="MEDIA_MONTA">Médio</option>
                 <option value="GRANDE_MONTA">Grande</option>
@@ -147,7 +154,7 @@ export default class AdicionarVeiculo extends Component {
           </div>
           <div className="row">
             <button
-              onClick={this.cadastrar}
+              type="submit"
               className="waves-effect waves-light btn green darken-1 col s4 offset-s4"
               href="/"
             >

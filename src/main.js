@@ -3,22 +3,26 @@ import TelaInicial from "./pages/TelaInicial";
 import BuscarOcorrencia from "./pages/BuscarOcorrencia";
 import ListarOcorrencias from "./pages/ListarOcorrencias";
 import PopUp from "./components/PopUp";
-import { addBairros } from "./services/bairros";
-import { addCodNat } from "./services/codNat";
+import { addBairros, getBairros } from "./services/bairros";
+import { addCodNat, getCodNat } from "./services/codNat";
 import { clearOcorrencia, get } from "./services/ocorrencia";
-import axios from "axios";
 import Indicadores from "./pages/Indicadores";
 import IndicadoresRegiao from "./pages/IndicadoresRegiao";
 import IndicadoresOcorrencias from "./pages/IndicadoresOcorrencias";
 import Header from "./components/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Navigate } from "react-router-dom";
 import Registra from "./pages/Registra";
+import Login from "./login/Login";
+import Cadastro from "./login/Cadastro";
+import Route from "./routes/Route";
+import api from "./services/api";
 
 export default class Main extends Component {
   state = {
     step: 1,
 
-    online: false,
+    online: true,
+    token: "",
 
     bairros: [],
     ocorrenciasOnline: [],
@@ -36,44 +40,68 @@ export default class Main extends Component {
       });
     }
 
+    if (this.state.online === false) return <Navigate to="/" />;
+
+    this.setState({
+      token: window.localStorage.getItem("token"),
+    });
+
     window.addEventListener("online", this.online);
     window.addEventListener("offline", this.offline);
 
-    this.fetchBairros();
-    this.fetchOcorrencias();
-
     if (this.state.online === true) {
-      get((ocorrencia) => {
-        this.setState({
-          getOcorrencias: ocorrencia,
-        });
-        this.boletimPost();
+      getCodNat((cod) => {
+        if (cod.length === 0) {
+          this.fetchOcorrencias();
+        } else {
+          console.log("Banco existente");
+        }
       });
 
-      clearOcorrencia();
+      getBairros((bairro) => {
+        if (bairro.length === 0) {
+          this.fetchBairros();
+        } else {
+          console.log("Banco existente");
+        }
+      });
+
+      get((ocorrencia) => {
+        if (ocorrencia.length === 0) {
+          console.log("Sem ocorrências");
+        } else {
+          this.setState({
+            getOcorrencias: ocorrencia,
+          });
+          this.boletimPost();
+        }
+      });
     }
   }
 
   boletimPost() {
-    this.state.getOcorrencias.map((oc) => {
-      return axios
-        .post(
-          "https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins",
-          oc,
-          { headers: { "Content-Type": "application/json" } }
-        )
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => console.log(error.response));
-    });
+    if (this.state.token) {
+      this.state.getOcorrencias.map((oc) => {
+        return api
+          .post("boletins", oc, {
+            headers: { Authorization: "Bearer " + this.state.token },
+          })
+          .then((response) => {
+            console.log(response);
+            clearOcorrencia();
+          })
+          .catch((error) => console.log(error.response));
+      });
+    }
   }
 
   fetchBairros() {
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/bairros/"
-      )
+    api
+      .get("bairros", {
+        headers: {
+          Authorization: "Bearer " + this.state.token,
+        },
+      })
       .then((res) => {
         this.setState({
           bairros: res.data,
@@ -86,10 +114,8 @@ export default class Main extends Component {
   }
 
   fetchOcorrencias() {
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/ocorrencias/"
-      )
+    api
+      .get("ocorrencias")
       .then((res) => {
         this.setState({
           ocorrenciasOnline: res.data,
@@ -125,8 +151,6 @@ export default class Main extends Component {
       });
       this.boletimPost();
     });
-
-    clearOcorrencia();
   };
 
   offline = () => {
@@ -158,34 +182,97 @@ export default class Main extends Component {
     });
   };
 
+  // render() {
+  //   return (
+  //     <BrowserRouter>
+  //       <Header />
+  //       <Routes history={history}>
+  //         <Route path="//*" element={<Login />} />
+  //         <Route path="/cadastro" element={<Cadastro />} />
+  //         <Route path="/home" element={<TelaInicial />} />
+  //         <Route
+  //           path="/registrar-ocorrencia"
+  //           element={
+  //             <Registra
+  //               prevStep={this.prevStep}
+  //               nextStep={this.nextStep}
+  //               resetStep={this.resetStep}
+  //               step={this.state.step}
+  //               online={this.state.online}
+  //             />
+  //           }
+  //         />
+  //         <Route path="/buscar-ocorrencia" element={<BuscarOcorrencia />} />
+  //         <Route path="/listar-ocorrencia" element={<ListarOcorrencias />} />
+  //         <Route path="/indicadores" element={<Indicadores />} />
+  //         <Route path="/indicadores-regiao" element={<IndicadoresRegiao />} />
+  //         <Route
+  //           path="/indicadores-ocorrencia"
+  //           element={<IndicadoresOcorrencias />}
+  //         />
+  //       </Routes>
+  //     </BrowserRouter>
+  //   );
+  // }
+
   render() {
-    return (
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<TelaInicial />} />
-          <Route
-            path="/registrar-ocorrencia"
-            element={
-              <Registra
-                prevStep={this.prevStep}
-                nextStep={this.nextStep}
-                resetStep={this.resetStep}
-                step={this.state.step}
-                online={this.state.online}
-              />
-            }
-          />
-          <Route path="/buscar-ocorrencia" element={<BuscarOcorrencia />} />
-          <Route path="/listar-ocorrencia" element={<ListarOcorrencias />} />
-          <Route path="/indicadores" element={<Indicadores />} />
-          <Route path="/indicadores-regiao" element={<IndicadoresRegiao />} />
-          <Route
-            path="/indicadores-ocorrencia"
-            element={<IndicadoresOcorrencias />}
-          />
-        </Routes>
-      </BrowserRouter>
-    );
+    if (this.state.online === false) {
+      return (
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Registra
+                  prevStep={this.prevStep}
+                  nextStep={this.nextStep}
+                  resetStep={this.resetStep}
+                  step={this.state.step}
+                  online={this.state.online}
+                />
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      );
+    } else {
+      return (
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            {/* <Route path="//*" element={<Login />} isPrivate={false} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/home" element={<TelaInicial />} redirectTo={"/"} /> */}
+            <Route path="/login/*" element={<Login />} isPrivate={false} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/" element={<TelaInicial />} />
+            <Route
+              path="/registrar-ocorrencia"
+              element={
+                <Registra
+                  prevStep={this.prevStep}
+                  nextStep={this.nextStep}
+                  resetStep={this.resetStep}
+                  step={this.state.step}
+                  online={this.state.online}
+                />
+              }
+            />
+            <Route
+              path="/buscar-ocorrencia"
+              element={<BuscarOcorrencia online={this.state.online} />}
+            />
+            <Route path="/listar-ocorrencia" element={<ListarOcorrencias />} />
+            <Route path="/indicadores" element={<Indicadores />} />
+            <Route path="/indicadores-regiao" element={<IndicadoresRegiao />} />
+            <Route
+              path="/indicadores-ocorrencia"
+              element={<IndicadoresOcorrencias />}
+            />
+            <Route path="*" element={<h1>404: Not Found</h1>} />
+          </Routes>
+        </BrowserRouter>
+      );
+    }
   }
 }

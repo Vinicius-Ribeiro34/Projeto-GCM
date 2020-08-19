@@ -1,6 +1,31 @@
 import React, { Component, Fragment } from "react";
+import { getCodNatById } from "../services/codNat";
+import { getBairrosById } from "../services/bairros";
 
 export default class TableOcorrencia extends Component {
+  state = {
+    naturezas: [],
+    codigos: [],
+    bairro: "",
+  };
+
+  componentDidMount() {
+    this.props.values.ocorrencias.map((item) => {
+      return getCodNatById((cod) => {
+        this.setState({
+          codigos: [...this.state.codigos, cod.codigoDaOcorrencia],
+          naturezas: [...this.state.naturezas, cod.naturezaDaOcorrencia],
+        });
+      }, item.id);
+    });
+
+    getBairrosById((cod) => {
+      this.setState({
+        bairro: cod,
+      });
+    }, this.props.values.bairro.id);
+  }
+
   render() {
     const { values } = this.props;
 
@@ -72,11 +97,15 @@ export default class TableOcorrencia extends Component {
             <tr>
               <td>Natureza da Ocorrência:</td>
               <td>
-                <strong>{values.ocorrencias.naturezaDaOcorrencia}</strong>
+                {this.state.naturezas.map((nat) => (
+                  <strong>{nat} - </strong>
+                ))}
               </td>
               <td>Código:</td>
               <td>
-                <strong>{values.ocorrencias.codigoDaOcorrencia}</strong>
+                {this.state.codigos.map((cod) => (
+                  <strong>{cod} - </strong>
+                ))}
               </td>
             </tr>
             <tr>
@@ -85,7 +114,9 @@ export default class TableOcorrencia extends Component {
                 <strong>{values.local}</strong>
               </td>
               <td>Bairro:</td>
-              {/* <td><strong>{values.bairro}</strong></td> */}
+              <td>
+                <strong>{this.state.bairro.nome}</strong>
+              </td>
             </tr>
           </tbody>
         </table>

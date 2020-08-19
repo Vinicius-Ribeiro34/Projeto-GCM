@@ -31,12 +31,13 @@ export default class PassoFinal extends Component {
   };
 
   boletimPost() {
+    const token = window.localStorage.getItem("token");
     axios
-      .post(
-        "https://cors-anywhere.herokuapp.com/https://gcm-mogi.herokuapp.com/boletins",
-        this.props.values,
-        { headers: { "Content-Type": "application/json" } }
-      )
+      .post("https://gcm-mogi.herokuapp.com/boletins", this.props.values, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((response) => {
         PopUp.exibeMensagem("success", "Ocorrência Registrada");
         console.log(response);
