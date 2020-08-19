@@ -70,7 +70,7 @@ export default class PassoFinal extends Component {
           <div className="row">
             <button
               onClick={this.back}
-              className="waves-effect waves-light btn red darken-1 col s3 offset-s2 espaco"
+              className="waves-effect waves-light btn blue darken-4 col s3 offset-s2 espaco"
             >
               Voltar
             </button>

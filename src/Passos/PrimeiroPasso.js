@@ -91,7 +91,7 @@ export default class PrimeiroPasso extends Component {
               </div>
             </div>
             <div className="row">
-              <Link to="/home">
+              <Link to="/">
                 <button
                   type="button"
                   onClick={this.props.resetStep}
