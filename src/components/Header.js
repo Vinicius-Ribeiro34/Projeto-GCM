@@ -26,7 +26,7 @@ class Header extends Component {
           >
             GCM
           </Link>
-          <Link to="/home" className="brand-logo hide-on-large-only">
+          <Link to="/" className="brand-logo hide-on-large-only">
             GCM
           </Link>
           <a href="/" data-target="mobile-demo" className="sidenav-trigger">
