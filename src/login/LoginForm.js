@@ -10,6 +10,7 @@ class LoginForm extends Component {
       email: "",
       senha: "",
       ok: false,
+      error: "",
     };
 
     this.userLogin = this.userLogin.bind(this);
@@ -39,12 +40,12 @@ class LoginForm extends Component {
       console.log(err.message);
       this.setState({
         ok: false,
+        error: "Dados incorretos",
       });
     }
   }
 
   render() {
-    // if (this.state.ok) return <Navigate to="/home" />;
     if (this.state.ok) return <Navigate to="/" />;
 
     return (
@@ -63,6 +64,7 @@ class LoginForm extends Component {
           onChange={this.handleChange}
           placeholder="Senha"
         />
+        <p style={{ color: "red" }}>{this.state.error}</p>
         <button type="submit">Entrar</button>
       </form>
     );

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import api from "../services/api";
 
-export default class ListarOcorrencia extends Component {
+export default class ListarBoletins extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ocorrencias: [],
-      ocorrencia: "",
+      boletins: [],
     };
   }
 
@@ -18,7 +17,7 @@ export default class ListarOcorrencia extends Component {
   get() {
     const token = window.localStorage.getItem("token");
     api
-      .get("boletins", {
+      .get("boletins/meus-boletins", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -26,7 +25,7 @@ export default class ListarOcorrencia extends Component {
       .then((res) => {
         console.log(res);
         this.setState({
-          ocorrencias: res.data,
+          boletins: res.data,
         });
       })
       .catch((error) => {
@@ -37,16 +36,16 @@ export default class ListarOcorrencia extends Component {
   render() {
     return (
       <div className="container">
-        <p className="titulo">Listar Boletims</p>
+        <p className="titulo">Meus Boletins</p>
         <br />
         <div>
-          {this.state.ocorrencias.map((oc, index) => {
+          {this.state.boletins.map((oc, index) => {
             return (
               <div key={index}>
                 <table className="striped centered">
                   <thead>
                     <tr>
-                      <th>Oficial: {oc.oficial}</th>
+                      <th>ID: {oc.id}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -63,6 +62,11 @@ export default class ListarOcorrencia extends Component {
                     <tr>
                       <td>
                         <b>Envolvidos:</b> {oc.envolvidos}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Número:</b> {oc.numero}
                       </td>
                     </tr>
                   </tbody>

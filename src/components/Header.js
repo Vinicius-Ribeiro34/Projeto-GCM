@@ -1,14 +1,38 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 
 class Header extends Component {
+  state = {
+    usuario: "",
+  };
+
   componentDidMount() {
     var options = {
       edge: "left",
     };
     var elems = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elems, options);
+
+    this.setPerfil();
+  }
+
+  async setPerfil() {
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await api.get("oficiais/meus-dados", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      this.setState({
+        usuario: response.data.perfis,
+      });
+      console.log(this.state.usuario);
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   logOut = () => {
@@ -36,12 +60,18 @@ class Header extends Component {
             <li>
               <Link to="/registrar-ocorrencia">Registrar Ocorrência</Link>
             </li>
-            <li>
-              <Link to="/buscar-ocorrencia">Buscar Ocorrência</Link>
-            </li>
-            <li>
-              <Link to="/listar-ocorrencia">Listar Ocorrências</Link>
-            </li>
+            <>
+              <li>
+                <Link to="/meus-boletins">Meus Boletins</Link>
+              </li>
+              <li>
+                <Link to="/buscar-ocorrencia">Buscar Ocorrência</Link>
+              </li>
+              <li>
+                <Link to="/listar-boletins">Listar Boletins</Link>
+              </li>
+            </>
+            )
             <li>
               <Link to="/indicadores">Indicadores</Link>
             </li>
@@ -49,9 +79,6 @@ class Header extends Component {
               <Link to="/login" onClick={this.logOut}>
                 Sair
               </Link>
-              {/* <Link to="/" onClick={this.logOut}>
-                Sair
-              </Link> */}
             </li>
           </ul>
           <ul className="sidenav" id="mobile-demo">
@@ -59,10 +86,13 @@ class Header extends Component {
               <Link to="/registrar-ocorrencia">Registrar Ocorrência</Link>
             </li>
             <li>
+              <Link to="/meus-boletins">Meus Boletins</Link>
+            </li>
+            <li>
               <Link to="/buscar-ocorrencia">Buscar Ocorrência</Link>
             </li>
             <li>
-              <Link to="/listar-ocorrencia">Listar Ocorrências</Link>
+              <Link to="/listar-boletins">Listar Boletins</Link>
             </li>
             <li>
               <Link to="/indicadores">Indicadores</Link>

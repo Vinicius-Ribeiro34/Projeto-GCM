@@ -24,7 +24,9 @@ export default class Registra extends Component {
     kmPrimeiroTermino: "",
     kmSegundoTermino: "",
     relatorioDaGCM: "",
-    oficial: {},
+    oficial: {
+      id: "",
+    },
     ocorrencias: [],
     local: "",
     bairro: {
@@ -55,7 +57,9 @@ export default class Registra extends Component {
           id: response.data.id,
         },
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   componentWillUnmount() {

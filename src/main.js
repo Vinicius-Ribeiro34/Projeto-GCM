@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import TelaInicial from "./pages/TelaInicial";
 import BuscarOcorrencia from "./pages/BuscarOcorrencia";
-import ListarOcorrencias from "./pages/ListarOcorrencias";
+import ListarBoletins from "./pages/ListarBoletins";
+import MeusBoletins from "./pages/MeusBoletins";
 import PopUp from "./components/PopUp";
 import { addBairros, getBairros } from "./services/bairros";
 import { addCodNat, getCodNat } from "./services/codNat";
@@ -23,6 +24,7 @@ export default class Main extends Component {
 
     online: true,
     token: "",
+    oficial: {},
 
     bairros: [],
     ocorrenciasOnline: [],
@@ -76,6 +78,25 @@ export default class Main extends Component {
           this.boletimPost();
         }
       });
+    }
+
+    this.setOficial();
+  }
+
+  async setOficial() {
+    try {
+      const token = window.localStorage.getItem("token");
+      const response = await api.get("oficiais/meus-dados", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      this.setState({
+        oficial: { ...response.data },
+      });
+    } catch (err) {
+      console.log(err.message);
     }
   }
 
@@ -183,6 +204,8 @@ export default class Main extends Component {
   };
 
   render() {
+    console.log(this.state.oficial);
+
     if (this.state.online === false) {
       return (
         <BrowserRouter>
@@ -206,7 +229,7 @@ export default class Main extends Component {
     } else {
       return (
         <BrowserRouter>
-          <Header />
+          <Header oficial={this.state.oficial} />
           <Routes>
             <Route
               path="/login"
@@ -232,7 +255,8 @@ export default class Main extends Component {
               path="/buscar-ocorrencia"
               element={<BuscarOcorrencia online={this.state.online} />}
             />
-            <Route path="/listar-ocorrencia" element={<ListarOcorrencias />} />
+            <Route path="/meus-boletins" element={<MeusBoletins />} />
+            <Route path="/listar-boletins" element={<ListarBoletins />} />
             <Route path="/indicadores" element={<Indicadores />} />
             <Route path="/indicadores-regiao" element={<IndicadoresRegiao />} />
             <Route

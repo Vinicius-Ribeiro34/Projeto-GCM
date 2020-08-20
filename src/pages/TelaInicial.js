@@ -47,24 +47,38 @@ export default class TelaInicial extends Component {
           </div>
           <div className="row">
             <div className="espaco">
-              <Link to="/buscar-ocorrencia">
+              <Link to="/meus-boletins">
                 <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                  <i className="material-icons left large">search</i>Buscar
-                  Ocorrência
+                  <i className="material-icons left large">add_box</i>Meus
+                  Boletins
                 </button>
               </Link>
             </div>
           </div>
-          <div className="row">
-            <div className="espaco">
-              <Link to="/listar-ocorrencia">
-                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                  <i className="material-icons left large">view_list</i>Listar
-                  Ocorrências
-                </button>
-              </Link>
+          {this.state.usuario.includes("ADMINISTRATIVO") && (
+            <div className="row">
+              <div className="espaco">
+                <Link to="/buscar-ocorrencia">
+                  <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
+                    <i className="material-icons left large">search</i>Buscar
+                    Ocorrência
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
+          {this.state.usuario.includes("ADMINISTRATIVO") && (
+            <div className="row">
+              <div className="espaco">
+                <Link to="/listar-boletins">
+                  <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
+                    <i className="material-icons left large">view_list</i>Listar
+                    Boletins
+                  </button>
+                </Link>
+              </div>
+            </div>
+          )}
           <div className="row">
             <div className="espaco">
               <Link to="/indicadores">
