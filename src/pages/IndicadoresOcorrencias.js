@@ -86,7 +86,7 @@ export default class IndicadoresOcorrencias extends Component {
             <div className="input-field col s1">
               <button
                 onClick={this.get}
-                className="waves-effect waves-light btn red darken-1"
+                className="waves-effect waves-light btn blue darken-4"
               >
                 <i className="material-icons">search</i>
               </button>
@@ -125,7 +125,7 @@ export default class IndicadoresOcorrencias extends Component {
         <div className="centered">
           <Link to="/indicadores">
             <button
-              className="waves-effect waves-light btn red darken-1 col s3"
+              className="waves-effect waves-light btn blue darken-4 col s3"
               href="/"
             >
               Voltar

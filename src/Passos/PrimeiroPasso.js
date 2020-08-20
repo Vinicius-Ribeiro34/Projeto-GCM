@@ -95,7 +95,7 @@ export default class PrimeiroPasso extends Component {
                 <button
                   type="button"
                   onClick={this.props.resetStep}
-                  className="waves-effect waves-light btn red darken-1 col s3 offset-s2"
+                  className="waves-effect waves-light btn blue darken-4 col s3 offset-s2"
                   href="/"
                 >
                   Voltar

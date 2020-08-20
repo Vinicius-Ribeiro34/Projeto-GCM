@@ -19,8 +19,7 @@
 .Logo {
     width: 20%;
     display: block;
-    margin-left: 42%;
-    margin-right: 63%;
+    margin: auto;
     padding-top: 2em;
     padding-bottom: 1em;
 }

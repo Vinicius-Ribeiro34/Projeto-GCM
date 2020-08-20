@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Logo from "../img/logo-gcm.jpg";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 
@@ -28,12 +27,7 @@ export default class TelaInicial extends Component {
   render() {
     return (
       <div className="container">
-        <img src={Logo} alt="logo" className="Logo hide-on-small-only"></img>
-        <img
-          src={Logo}
-          alt="logo"
-          className="Logo-mobile hide-on-med-and-up"
-        ></img>
+        <br /> <br />
         <div className="col s10">
           <div className="row">
             <div className="espaco">

@@ -51,12 +51,12 @@ export default class Indicadores extends Component {
         <form className="col s10">
           <div className="row">
             <Link to="/indicadores-regiao">
-              <button className="waves-effect waves-light btn red darken-1 col s4 offset-s1">
+              <button className="waves-effect waves-light btn blue darken-4 col s4 offset-s1">
                 Região
               </button>
             </Link>
             <Link to="/indicadores-ocorrencia">
-              <button className="waves-effect waves-light btn red darken-1 col s4 offset-s2">
+              <button className="waves-effect waves-light btn blue darken-4 col s4 offset-s2">
                 Ocorrências
               </button>
             </Link>
