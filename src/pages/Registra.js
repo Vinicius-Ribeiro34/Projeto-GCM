@@ -55,11 +55,11 @@ export default class Registra extends Component {
           id: response.data.id,
         },
       }));
+    } catch (err) {}
+  }
 
-      console.log(this.state.oficial);
-    } catch (err) {
-      console.log(err.message);
-    }
+  componentWillUnmount() {
+    this.props.resetStep();
   }
 
   clearState = () => {

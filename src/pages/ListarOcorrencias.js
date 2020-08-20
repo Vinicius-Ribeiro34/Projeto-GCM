@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import api from "../services/api";
 
 export default class ListarOcorrencia extends Component {
@@ -24,6 +24,7 @@ export default class ListarOcorrencia extends Component {
         },
       })
       .then((res) => {
+        console.log(res);
         this.setState({
           ocorrencias: res.data,
         });
@@ -36,7 +37,7 @@ export default class ListarOcorrencia extends Component {
   render() {
     return (
       <div className="container">
-        <p className="titulo">Lista de Ocorrências</p>
+        <p className="titulo">Listar Boletims</p>
         <br />
         <div>
           {this.state.ocorrencias.map((oc, index) => {
@@ -45,29 +46,25 @@ export default class ListarOcorrencia extends Component {
                 <table className="striped centered">
                   <thead>
                     <tr>
-                      <th>Número da Ocorrência: {oc.numeroDaOcorrencia}</th>
+                      <th>Oficial: {oc.oficial}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>
-                        <b>ID da Ocorrência: {oc.id}</b>
+                        <b>Ocorrencias:</b> {oc.ocorrencias}
                       </td>
                     </tr>
-                    {oc.ocorrencias.map((o, index) => {
-                      return (
-                        <Fragment key={index}>
-                          <tr>
-                            <td>Natureza: {o.naturezaDaOcorrencia}</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Código da Ocorrencia: {o.codigoDaOcorrencia}
-                            </td>
-                          </tr>
-                        </Fragment>
-                      );
-                    })}
+                    <tr>
+                      <td>
+                        <b>Bairro:</b> {oc.bairro}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Envolvidos:</b> {oc.envolvidos}
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
                 <br />

@@ -79,7 +79,7 @@ export default class TelaInicial extends Component {
             <div className="row">
               <div className="espaco">
                 <Link to="/cadastro">
-                  <button className="waves-effect waves-light btn-large red App col s8 offset-s2">
+                  <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
                     <i className="material-icons left large">assignment_ind</i>
                     Cadastrar Oficial
                   </button>

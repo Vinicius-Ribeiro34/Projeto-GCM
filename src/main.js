@@ -182,46 +182,14 @@ export default class Main extends Component {
     });
   };
 
-  // render() {
-  //   return (
-  //     <BrowserRouter>
-  //       <Header />
-  //       <Routes history={history}>
-  //         <Route path="//*" element={<Login />} />
-  //         <Route path="/cadastro" element={<Cadastro />} />
-  //         <Route path="/home" element={<TelaInicial />} />
-  //         <Route
-  //           path="/registrar-ocorrencia"
-  //           element={
-  //             <Registra
-  //               prevStep={this.prevStep}
-  //               nextStep={this.nextStep}
-  //               resetStep={this.resetStep}
-  //               step={this.state.step}
-  //               online={this.state.online}
-  //             />
-  //           }
-  //         />
-  //         <Route path="/buscar-ocorrencia" element={<BuscarOcorrencia />} />
-  //         <Route path="/listar-ocorrencia" element={<ListarOcorrencias />} />
-  //         <Route path="/indicadores" element={<Indicadores />} />
-  //         <Route path="/indicadores-regiao" element={<IndicadoresRegiao />} />
-  //         <Route
-  //           path="/indicadores-ocorrencia"
-  //           element={<IndicadoresOcorrencias />}
-  //         />
-  //       </Routes>
-  //     </BrowserRouter>
-  //   );
-  // }
-
   render() {
     if (this.state.online === false) {
       return (
         <BrowserRouter>
           <Routes>
             <Route
-              path="/"
+              isPrivate={false}
+              path="*"
               element={
                 <Registra
                   prevStep={this.prevStep}
@@ -240,10 +208,12 @@ export default class Main extends Component {
         <BrowserRouter>
           <Header />
           <Routes>
-            {/* <Route path="//*" element={<Login />} isPrivate={false} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/home" element={<TelaInicial />} redirectTo={"/"} /> */}
-            <Route path="/login/*" element={<Login />} isPrivate={false} />
+            <Route
+              path="/login"
+              element={<Login online={this.state.online} />}
+              isPrivate={false}
+              redirectTo={"/registrar-ocorrencia"}
+            />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/" element={<TelaInicial />} />
             <Route
