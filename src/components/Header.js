@@ -19,9 +19,9 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper blue darken-4">
-          <Link to="/" className="brand-logo ">
-            GCM
-          </Link>
+            <Link to="/" className="brand-logo center">
+              GCM
+            </Link>
           <a
             href="/"
             data-target="mobile-demo"
