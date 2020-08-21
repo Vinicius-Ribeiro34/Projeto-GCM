@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Navigate, Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import M from 'materialize-css';
 
 class Login extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
+    M.AutoInit();
     const token = window.localStorage.getItem("token");
 
     if (token) {
