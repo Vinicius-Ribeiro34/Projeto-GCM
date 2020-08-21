@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../services/api";
+import M from "materialize-css";
 
 export default class ListarBoletins extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class ListarBoletins extends Component {
   }
 
   componentDidMount() {
+    M.AutoInit();
     this.get();
   }
 

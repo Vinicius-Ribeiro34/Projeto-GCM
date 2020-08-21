@@ -7,6 +7,7 @@ import PassoFinal from "../Passos/PassoFinal";
 import TelaInicial from "./TelaInicial";
 import SegundoPasso from "../Passos/SegundoPasso";
 import api from "../services/api";
+import M from "materialize-css";
 
 export default class Registra extends Component {
   initialState = {
@@ -43,6 +44,7 @@ export default class Registra extends Component {
   }
 
   async componentDidMount() {
+    M.AutoInit();
     try {
       const token = window.localStorage.getItem("token");
       const response = await api.get("oficiais/meus-dados", {

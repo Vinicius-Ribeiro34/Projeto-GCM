@@ -63,7 +63,7 @@ export default class Indicadores extends Component {
           </div>
         </form>
         <div className="divider"></div>
-        <p className="titulo">Maiores Ocorrências:</p>
+        <p className="titulo">Top 5:</p>
         <div>
           {this.state.ocorrencias.map((oc, index) => {
             return (
@@ -71,7 +71,7 @@ export default class Indicadores extends Component {
                 <table className="striped centered">
                   <thead>
                     <tr>
-                      <th>Nome: {oc.nome}</th>
+                      <th>Bairro: {oc.nome}</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -1,68 +1,67 @@
 .input-field input:focus + label {
-    color: black !important;
+  color: black !important;
 }
 
 .row .input-field input:focus {
-    border-bottom: 1px solid black !important;
-    box-shadow: 0 1px 0 0 black !important
+  border-bottom: 1px solid black !important;
+  box-shadow: 0 1px 0 0 black !important;
 }
 
 .input-field textarea:focus + label {
-    color: black !important;
-  }
-  
-  .row .input-field textarea:focus {
-    border-bottom: 1px solid black !important;
-    box-shadow: 0 1px 0 0 black !important
-  }
+  color: black !important;
+}
+
+.row .input-field textarea:focus {
+  border-bottom: 1px solid black !important;
+  box-shadow: 0 1px 0 0 black !important;
+}
 
 .Logo {
-    width: 20%;
-    display: block;
-    margin: auto;
-    padding-top: 2em;
-    padding-bottom: 1em;
+  width: 20%;
+  display: block;
+  margin: auto;
+  padding-top: 2em;
+  padding-bottom: 1em;
 }
 
 .Logo-mobile {
-    width: 50%;
-    display: block;
-    margin: auto;
-    padding-top: 2em;
-    padding-bottom: 1em;
+  width: 50%;
+  display: block;
+  margin: auto;
+  padding-top: 2em;
+  padding-bottom: 1em;
 }
 
-
 .texto-centralizado {
-    text-align: center;
-    margin-bottom: 1em;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .titulo {
-    font-size: 3em;
+  font-size: 3em;
 }
 
 .filled-in {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 .espaco {
-    margin: 1em 0 2em 0;
+  margin: 1em 0 2em 0;
 }
 
 #header-logo {
-    display: block;
-    margin-left: 1em;
+  display: block;
+  margin-left: 1em;
 }
 
 #icon-black {
-    color: black;
+  color: black;
 }
 
 #botao {
-    width: 60%;
-    height: 60%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 60%;
+  height: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

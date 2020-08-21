@@ -19,44 +19,16 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper blue darken-4">
-          <Link
-            to="/"
-            className="brand-logo hide-on-med-and-down"
-            id="header-logo"
+          <Link to="/" className="brand-logo ">
+            GCM
+          </Link>
+          <a
+            href="/"
+            data-target="mobile-demo"
+            className="sidenav-trigger show-on-large"
           >
-            GCM
-          </Link>
-          <Link to="/" className="brand-logo hide-on-large-only">
-            GCM
-          </Link>
-          <a href="/" data-target="mobile-demo" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
-          <ul className="right hide-on-med-and-down">
-            <li>
-              <Link to="/registrar-ocorrencia">Registrar Ocorrência</Link>
-            </li>
-            <>
-              <li>
-                <Link to="/meus-boletins">Meus Boletins</Link>
-              </li>
-              <li>
-                <Link to="/buscar-ocorrencia">Buscar Ocorrência</Link>
-              </li>
-              <li>
-                <Link to="/listar-boletins">Listar Boletins</Link>
-              </li>
-            </>
-            )
-            <li>
-              <Link to="/indicadores">Indicadores</Link>
-            </li>
-            <li>
-              <Link to="/login" onClick={this.logOut}>
-                Sair
-              </Link>
-            </li>
-          </ul>
           <ul className="sidenav" id="mobile-demo">
             <li>
               <Link to="/registrar-ocorrencia">Registrar Ocorrência</Link>
@@ -74,7 +46,7 @@ class Header extends Component {
               <Link to="/indicadores">Indicadores</Link>
             </li>
             <li>
-              <Link to="/" onClick={this.logOut}>
+              <Link to="/login" onClick={this.logOut}>
                 Sair
               </Link>
             </li>

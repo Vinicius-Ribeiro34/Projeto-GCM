@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getOcorrenciaById } from "../services/ocorrencia";
+import M from "materialize-css";
 import Table from "../components/Table";
 import PopUp from "../components/PopUp";
 import api from "../services/api";
@@ -20,6 +21,7 @@ export default class BuscarOcorrencia extends Component {
   }
 
   componentDidMount() {
+    M.AutoInit();
     console.log(this.props.online ? "Está online" : "Não está");
     console.log(this.props.online);
 
