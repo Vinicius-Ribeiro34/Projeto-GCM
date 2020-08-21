@@ -45,13 +45,13 @@ export default class ListarBoletins extends Component {
                 <table className="striped centered">
                   <thead>
                     <tr>
-                      <th>ID: {oc.id}</th>
+                      <th>Número: {oc.numero}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>
-                        <b>Número:</b> {oc.numero}
+                        <b>Ocorrencias:</b> {oc.ocorrencias}
                       </td>
                     </tr>
                     <tr>
