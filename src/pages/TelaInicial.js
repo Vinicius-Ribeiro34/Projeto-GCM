@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
+import { clearOcorrencia, get } from "../services/ocorrencia";
 
 export default class TelaInicial extends Component {
   state = {
     usuario: "",
+    id: "",
+    ocorrencias: [],
   };
 
   async componentDidMount() {
@@ -17,11 +20,44 @@ export default class TelaInicial extends Component {
       });
       this.setState({
         usuario: response.data.perfis,
+        id: response.data.id,
       });
-      console.log(this.state.usuario);
     } catch (err) {
       console.log(err.message);
     }
+
+    get((ocorrencia) => {
+      if (ocorrencia.length === 0) {
+        console.log("Sem ocorrências");
+      } else {
+        const getOcorrencias = ocorrencia;
+
+        getOcorrencias.map((oc) => {
+          return (oc.oficial.id = this.state.id);
+        });
+
+        this.setState({
+          ocorrencias: getOcorrencias,
+        });
+
+        this.boletimPost();
+      }
+    });
+  }
+
+  boletimPost() {
+    const token = window.localStorage.getItem("token");
+    this.state.ocorrencias.map((oc) => {
+      return api
+        .post("boletins", oc, {
+          headers: { Authorization: "Bearer " + token },
+        })
+        .then((response) => {
+          console.log(response);
+          clearOcorrencia();
+        })
+        .catch((error) => console.log(error.response));
+    });
   }
 
   render() {

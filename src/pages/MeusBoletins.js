@@ -51,7 +51,7 @@ export default class ListarBoletins extends Component {
                   <tbody>
                     <tr>
                       <td>
-                        <b>Ocorrencias:</b> {oc.ocorrencias}
+                        <b>Número:</b> {oc.numero}
                       </td>
                     </tr>
                     <tr>
@@ -62,11 +62,6 @@ export default class ListarBoletins extends Component {
                     <tr>
                       <td>
                         <b>Envolvidos:</b> {oc.envolvidos}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <b>Número:</b> {oc.numero}
                       </td>
                     </tr>
                   </tbody>

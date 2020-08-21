@@ -6,7 +6,6 @@ import MeusBoletins from "./pages/MeusBoletins";
 import PopUp from "./components/PopUp";
 import { addBairros, getBairros } from "./services/bairros";
 import { addCodNat, getCodNat } from "./services/codNat";
-import { clearOcorrencia, get } from "./services/ocorrencia";
 import Indicadores from "./pages/Indicadores";
 import IndicadoresRegiao from "./pages/IndicadoresRegiao";
 import IndicadoresOcorrencias from "./pages/IndicadoresOcorrencias";
@@ -67,20 +66,7 @@ export default class Main extends Component {
           console.log("Banco existente");
         }
       });
-
-      get((ocorrencia) => {
-        if (ocorrencia.length === 0) {
-          console.log("Sem ocorrências");
-        } else {
-          this.setState({
-            getOcorrencias: ocorrencia,
-          });
-          this.boletimPost();
-        }
-      });
     }
-
-    this.setOficial();
   }
 
   async setOficial() {
@@ -97,22 +83,6 @@ export default class Main extends Component {
       });
     } catch (err) {
       console.log(err.message);
-    }
-  }
-
-  boletimPost() {
-    if (this.state.token) {
-      this.state.getOcorrencias.map((oc) => {
-        return api
-          .post("boletins", oc, {
-            headers: { Authorization: "Bearer " + this.state.token },
-          })
-          .then((response) => {
-            console.log(response);
-            clearOcorrencia();
-          })
-          .catch((error) => console.log(error.response));
-      });
     }
   }
 
@@ -166,12 +136,12 @@ export default class Main extends Component {
       online: true,
     });
 
-    get((ocorrencia) => {
-      this.setState({
-        getOcorrencias: ocorrencia,
-      });
-      this.boletimPost();
-    });
+    // get((ocorrencia) => {
+    //   this.setState({
+    //     getOcorrencias: ocorrencia,
+    //   });
+    //   this.boletimPost();
+    // });
   };
 
   offline = () => {
@@ -204,8 +174,6 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log(this.state.oficial);
-
     if (this.state.online === false) {
       return (
         <BrowserRouter>
@@ -238,7 +206,10 @@ export default class Main extends Component {
               redirectTo={"/registrar-ocorrencia"}
             />
             <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/" element={<TelaInicial />} />
+            <Route
+              path="/"
+              element={<TelaInicial boletimPost={this.boletimPost} />}
+            />
             <Route
               path="/registrar-ocorrencia"
               element={

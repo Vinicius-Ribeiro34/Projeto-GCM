@@ -1,38 +1,14 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import { Link } from "react-router-dom";
-import api from "../services/api";
 
 class Header extends Component {
-  state = {
-    usuario: "",
-  };
-
   componentDidMount() {
     var options = {
       edge: "left",
     };
     var elems = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elems, options);
-
-    this.setPerfil();
-  }
-
-  async setPerfil() {
-    try {
-      const token = window.localStorage.getItem("token");
-      const response = await api.get("oficiais/meus-dados", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-      this.setState({
-        usuario: response.data.perfis,
-      });
-      console.log(this.state.usuario);
-    } catch (err) {
-      console.log(err.message);
-    }
   }
 
   logOut = () => {

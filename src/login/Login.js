@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navigate, Routes, Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
 class Login extends Component {
@@ -30,10 +30,9 @@ class Login extends Component {
 
     return (
       <div>
-        <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
+        {/* <Routes> */}
+        <Route path="/" element={<LoginForm />} />
+        {/* </Routes> */}
       </div>
     );
   }
