@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 import { clearOcorrencia, get } from "../services/ocorrencia";
+import PopUp from "../components/PopUp";
 
 export default class TelaInicial extends Component {
   state = {
@@ -28,7 +29,7 @@ export default class TelaInicial extends Component {
 
     get((ocorrencia) => {
       if (ocorrencia.length === 0) {
-        console.log("Sem ocorrências");
+        PopUp.exibeMensagem("error", "Sem ocorrências")
       } else {
         const getOcorrencias = ocorrencia;
 
@@ -53,7 +54,6 @@ export default class TelaInicial extends Component {
           headers: { Authorization: "Bearer " + token },
         })
         .then((response) => {
-          console.log(response);
           clearOcorrencia();
         })
         .catch((error) => console.log(error.response));

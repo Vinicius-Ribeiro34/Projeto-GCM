@@ -36,7 +36,6 @@ export default class Editar extends Component {
         },
       })
       .then((res) => {
-        console.log(res);
         const ids = res.data.ocorrencias.map((linha) => {
           return {
             id: linha.id,

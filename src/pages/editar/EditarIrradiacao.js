@@ -1,19 +1,12 @@
 import React, { Component, Fragment } from "react";
 
 export default class EditarIrradiacao extends Component {
-
-  teste = e => {
-      e.preventDefault();
-      console.log(this.state.boletins);
-  }
-
   render() {
     const { boletins, handleChange } = this.props;
   
     return (
       <Fragment>
         <p className="titulo">Irradiação</p>
-        <button onClick={this.teste}>AAAA</button>
         <form className="col s10">
           <div className="row">
             <div className="input-field col s5 offset-s1">

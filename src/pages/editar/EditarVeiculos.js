@@ -1,10 +1,6 @@
 import React, { Component, Fragment } from "react";
 
 export default class EditarVeiculos extends Component {
-  componentDidMount() {
-    console.log(this.props.veiculos);
-  }
-
   render() {
     const { veiculos, handleVeiculos } = this.props;
     return (

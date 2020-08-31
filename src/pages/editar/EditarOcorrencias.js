@@ -21,12 +21,7 @@ export default class EditarOcorrencias extends Component {
       });
     });
   }
-
-  teste = (e) => {
-    e.preventDefault();
-    console.log(this.state.ocorrencias);
-  };
-
+  
   mountOptions() {
     return this.state.bairrosOffline.map((bairro) => {
       return (

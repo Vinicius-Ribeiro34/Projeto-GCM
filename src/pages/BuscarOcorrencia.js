@@ -23,9 +23,6 @@ export default class BuscarOcorrencia extends Component {
 
   componentDidMount() {
     M.AutoInit();
-    console.log(this.props.online ? "Está online" : "Não está");
-    console.log(this.props.online);
-
     const tokenStorage = window.localStorage.getItem("token");
     this.setState({
       token: tokenStorage,
@@ -47,8 +44,6 @@ export default class BuscarOcorrencia extends Component {
         } else {
           PopUp.exibeMensagem("error", "Batata");
         }
-
-        console.log(this.state.ocorrencia);
       }, id);
     } else {
       const id = this.state.id;

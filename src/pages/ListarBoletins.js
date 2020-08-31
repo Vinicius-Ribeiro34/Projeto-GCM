@@ -26,7 +26,6 @@ export default class ListarBoletins extends Component {
         },
       })
       .then((res) => {
-        console.log(res);
         this.setState({
           ocorrencias: res.data,
         });
