@@ -66,7 +66,7 @@ export default class EditarEnvolvidos extends Component {
                         type="checkbox"
                         className="filled-in validate"
                         onChange={handleEnvolvidos("conduzido", index)}
-                        value={envolvido.conduzido}
+                        checked={envolvido.conduzido}
                       />
                       <span>Conduzido</span>
                     </label>

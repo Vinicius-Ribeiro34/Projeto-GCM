@@ -12,19 +12,19 @@ import { Link } from "react-router-dom";
 
 export default class Editar extends Component {
   constructor(props) {
-  super(props);
-  
-  this.boletimPut = this.boletimPut.bind(this);
+    super(props);
 
-  this.state = {
-    boletins: {},
-    veiculos: [],
-    ocorrencias: [],
-    envolvidos: [],
-    bairros: {},
-    show: false,
-  };
-}
+    this.boletimPut = this.boletimPut.bind(this);
+
+    this.state = {
+      boletins: {},
+      veiculos: [],
+      ocorrencias: [],
+      envolvidos: [],
+      bairros: {},
+      show: false,
+    };
+  }
 
   componentDidMount() {
     const token = window.localStorage.getItem("token");
@@ -69,15 +69,11 @@ export default class Editar extends Component {
     const token = window.localStorage.getItem("token");
 
     axios
-      .put(
-        "https://gcm-mogi.herokuapp.com/boletins/" + this.props.id,
-        final,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
+      .put("https://gcm-mogi.herokuapp.com/boletins/" + this.props.id, final, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then(() => {
         PopUp.exibeMensagem("success", "Boletim Editado");
       })
@@ -85,7 +81,7 @@ export default class Editar extends Component {
         PopUp.exibeMensagem("erros", "Erro ao editar boletim");
         console.log(err);
       });
-  };
+  }
 
   handleChange = (input) => (e) => {
     if (this.identificadorInt(input)) {
@@ -118,13 +114,25 @@ export default class Editar extends Component {
 
   handleEnvolvidos = (input, index) => (e) => {
     const envolvidosUpdate = this.state.envolvidos.slice();
-    envolvidosUpdate[index] = {
-      ...envolvidosUpdate[index],
-      [input]: e.target.value,
-    };
-    this.setState({
-      envolvidos: envolvidosUpdate,
-    });
+
+    if (e.target.type === "checkbox") {
+      const value = e.target.checked;
+      envolvidosUpdate[index] = {
+        ...envolvidosUpdate[index],
+        [input]: value,
+      };
+      this.setState({
+        envolvidos: envolvidosUpdate,
+      });
+    } else {
+      envolvidosUpdate[index] = {
+        ...envolvidosUpdate[index],
+        [input]: e.target.value,
+      };
+      this.setState({
+        envolvidos: envolvidosUpdate,
+      });
+    }
   };
 
   handleOcorrencias = (input, index) => (e) => {
@@ -187,14 +195,14 @@ export default class Editar extends Component {
           <Fragment>
             <div className="row">
               <div className="input-field col s12">
-                <Link to='/'>
-                <button
-                  onClick={this.boletimPut}
-                  className="waves-effect waves-light btn blue darken-4"
-                >
-                  <i class="material-icons left large">send</i>
-                  Enviar
-                </button>
+                <Link to="/">
+                  <button
+                    onClick={this.boletimPut}
+                    className="waves-effect waves-light btn blue darken-4"
+                  >
+                    <i class="material-icons left large">send</i>
+                    Enviar
+                  </button>
                 </Link>
               </div>
             </div>
