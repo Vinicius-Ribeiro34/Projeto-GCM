@@ -103,7 +103,6 @@ export default class Registra extends Component {
       case 1:
         return (
           <div>
-            <p className="titulo"> Passo {this.props.step} de 6:</p>
             <PrimeiroPasso
               prevStep={this.props.prevStep}
               nextStep={this.props.nextStep}
@@ -116,7 +115,6 @@ export default class Registra extends Component {
       case 2:
         return (
           <div>
-            <p className="titulo"> Passo {this.props.step} de 6:</p>
             <SegundoPasso
               prevStep={this.props.prevStep}
               nextStep={this.props.nextStep}
@@ -128,7 +126,6 @@ export default class Registra extends Component {
       case 3:
         return (
           <div>
-            <p className="titulo"> Passo {this.props.step} de 6:</p>
             <TerceiroPasso
               prevStep={this.props.prevStep}
               nextStep={this.props.nextStep}
@@ -140,7 +137,6 @@ export default class Registra extends Component {
       case 4:
         return (
           <div>
-            <p className="titulo"> Passo {this.props.step} de 6:</p>
             <QuartoPasso
               prevStep={this.props.prevStep}
               nextStep={this.props.nextStep}
@@ -152,7 +148,6 @@ export default class Registra extends Component {
       case 5:
         return (
           <div>
-            <p className="titulo"> Passo {this.props.step} de 6:</p>
             <QuintoPasso
               prevStep={this.props.prevStep}
               nextStep={this.props.nextStep}
@@ -164,7 +159,6 @@ export default class Registra extends Component {
       case 6:
         return (
           <div>
-            <p className="titulo"> Passo {this.props.step} de 6:</p>
             <PassoFinal
               prevStep={this.props.prevStep}
               nextStep={this.props.nextStep}

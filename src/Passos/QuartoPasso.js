@@ -29,6 +29,7 @@ export default class QuartoPasso extends Component {
 
     return (
       <div className="container">
+        <p className="titulo">Envolvidos:</p>
         <div className="section">
           <div className="progress">
             <div

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { getOcorrenciaById } from "../services/ocorrencia";
 import M from "materialize-css";
 import Table from "../components/Table";
 import PopUp from "../components/PopUp";
 import api from "../services/api";
+import { Link } from "react-router-dom";
 
 export default class BuscarOcorrencia extends Component {
   constructor(props) {
@@ -82,6 +83,7 @@ export default class BuscarOcorrencia extends Component {
   }
 
   render() {
+    const { editarId } = this.props;
     return (
       <div className="container">
         <p className="titulo">Buscar Ocorrência</p>
@@ -109,7 +111,22 @@ export default class BuscarOcorrencia extends Component {
         </form>
 
         {this.state.show === 2 ? (
-          <Table values={this.state.ocorrencia} />
+          <Fragment>
+            <div className="row">
+              <div className="input-field col s12">
+                <Link to="/editar">
+                  <button
+                    onClick={editarId(this.state.id)}
+                    className="waves-effect waves-light btn blue darken-4"
+                  >
+                    <i class="material-icons left large">edit</i>
+                    Editar
+                  </button>
+                </Link>
+              </div>
+            </div>
+            <Table values={this.state.ocorrencia} />
+          </Fragment>
         ) : null}
       </div>
     );

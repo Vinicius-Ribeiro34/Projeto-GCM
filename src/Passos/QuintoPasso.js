@@ -29,6 +29,7 @@ export default class QuintoPasso extends Component {
 
     return (
       <div className="container">
+        <p className="titulo">Veículos:</p>
         <div className="section">
           <div className="progress">
             <div

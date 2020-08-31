@@ -29,7 +29,7 @@ class Header extends Component {
           >
             <i className="material-icons">menu</i>
           </a>
-          <ul className="sidenav" id="mobile-demo">
+          <ul className="sidenav left-align" id="mobile-demo">
             <li>
               <Link to="/registrar-ocorrencia">Registrar Ocorrência</Link>
             </li>

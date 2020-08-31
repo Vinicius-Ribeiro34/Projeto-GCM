@@ -16,6 +16,7 @@ import Login from "./login/Login";
 import Cadastro from "./login/Cadastro";
 import Route from "./routes/Route";
 import api from "./services/api";
+import Editar from "./pages/editar/Editar";
 
 export default class Main extends Component {
   state = {
@@ -28,6 +29,7 @@ export default class Main extends Component {
     bairros: [],
     ocorrenciasOnline: [],
     getOcorrencias: [],
+    id: {},
   };
 
   componentDidMount() {
@@ -67,6 +69,12 @@ export default class Main extends Component {
         }
       });
     }
+  }
+
+  editarId = (value) => (e) => {
+    this.setState({
+      id: value
+    });
   }
 
   async setOficial() {
@@ -206,10 +214,7 @@ export default class Main extends Component {
               redirectTo={"/registrar-ocorrencia"}
             />
             <Route path="/cadastro" element={<Cadastro />} />
-            <Route
-              path="/"
-              element={<TelaInicial boletimPost={this.boletimPost} />}
-            />
+            <Route path="/" element={<TelaInicial />} />
             <Route
               path="/registrar-ocorrencia"
               element={
@@ -224,9 +229,9 @@ export default class Main extends Component {
             />
             <Route
               path="/buscar-ocorrencia"
-              element={<BuscarOcorrencia online={this.state.online} />}
+              element={<BuscarOcorrencia online={this.state.online} editarId={this.editarId}/>}
             />
-            <Route path="/meus-boletins" element={<MeusBoletins />} />
+            <Route path="/meus-boletins" element={<MeusBoletins editarId={this.editarId}/>} />
             <Route path="/listar-boletins" element={<ListarBoletins />} />
             <Route path="/indicadores" element={<Indicadores />} />
             <Route path="/indicadores-regiao" element={<IndicadoresRegiao />} />
@@ -234,6 +239,7 @@ export default class Main extends Component {
               path="/indicadores-ocorrencia"
               element={<IndicadoresOcorrencias />}
             />
+            <Route path="/editar" element={<Editar id={this.state.id}/>} />
             <Route path="*" element={<h1>404: Not Found</h1>} />
           </Routes>
         </BrowserRouter>

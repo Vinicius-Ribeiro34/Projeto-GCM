@@ -16,9 +16,36 @@
   box-shadow: 0 1px 0 0 black !important;
 }
 
+.tabs {
+  margin-bottom: 2em;
+}
+
+.tabs .tab a {
+  color: #000;
+}
+
+.tabs .tab a:hover {
+  background-color: #eee;
+  color: #000;
+}
+
+.tabs .tab a.active {
+  color: #000;
+}
+
+.tabs .tab a:focus.active {
+  background-color: #eee;
+}
+
+.tabs .indicator {
+  background-color: #000;
+}
+
 .centralizar {
   display: inline;
   vertical-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .Logo {

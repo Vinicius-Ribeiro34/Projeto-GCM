@@ -69,6 +69,7 @@ export default class TerceiroPasso extends Component {
 
     return (
       <div className="container">
+        <p className="titulo">Ocorrências:</p>
         <div className="section">
           <div className="progress">
             <div

@@ -63,74 +63,78 @@ export default class TelaInicial extends Component {
   render() {
     return (
       <div className="container">
-        <br /> <br />
-        <div className="col s10">
-          <div className="row">
-            <div className="espaco">
-              <Link to="/registrar-ocorrencia">
-                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                  <i className="material-icons left large">add_box</i>Registrar
-                  Ocorrência
-                </button>
-              </Link>
-            </div>
-          </div>
-          <div className="row">
-            <div className="espaco">
-              <Link to="/meus-boletins">
-                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                  <i className="material-icons left large">add_box</i>Meus
-                  Boletins
-                </button>
-              </Link>
-            </div>
-          </div>
-          {this.state.usuario.includes("ADMINISTRATIVO") && (
+        <br />
+        <div className="centralizar">
+          <div className="col s10">
             <div className="row">
               <div className="espaco">
-                <Link to="/buscar-ocorrencia">
+                <Link to="/registrar-ocorrencia">
                   <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                    <i className="material-icons left large">search</i>Buscar
-                    Ocorrência
+                    <i className="material-icons left large">add_box</i>
+                    Registrar Ocorrência
                   </button>
                 </Link>
               </div>
             </div>
-          )}
-          {this.state.usuario.includes("ADMINISTRATIVO") && (
             <div className="row">
               <div className="espaco">
-                <Link to="/listar-boletins">
+                <Link to="/meus-boletins">
                   <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                    <i className="material-icons left large">view_list</i>Listar
+                    <i className="material-icons left large">add_box</i>Meus
                     Boletins
                   </button>
                 </Link>
               </div>
             </div>
-          )}
-          <div className="row">
-            <div className="espaco">
-              <Link to="/indicadores">
-                <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                  <i className="material-icons left large">assignment</i>
-                  Indicadores
-                </button>
-              </Link>
-            </div>
-          </div>
-          {this.state.usuario.includes("ADMINISTRATIVO") && (
+            {this.state.usuario.includes("ADMINISTRATIVO") && (
+              <div className="row">
+                <div className="espaco">
+                  <Link to="/buscar-ocorrencia">
+                    <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
+                      <i className="material-icons left large">search</i>Buscar
+                      Ocorrência
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            )}
+            {this.state.usuario.includes("ADMINISTRATIVO") && (
+              <div className="row">
+                <div className="espaco">
+                  <Link to="/listar-boletins">
+                    <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
+                      <i className="material-icons left large">view_list</i>
+                      Listar Boletins
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            )}
             <div className="row">
               <div className="espaco">
-                <Link to="/cadastro">
+                <Link to="/indicadores">
                   <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
-                    <i className="material-icons left large">assignment_ind</i>
-                    Cadastrar Oficial
+                    <i className="material-icons left large">assignment</i>
+                    Indicadores
                   </button>
                 </Link>
               </div>
             </div>
-          )}
+            {this.state.usuario.includes("ADMINISTRATIVO") && (
+              <div className="row">
+                <div className="espaco">
+                  <Link to="/cadastro">
+                    <button className="waves-effect waves-light btn-large blue darken-4 App col s8 offset-s2">
+                      <i className="material-icons left large">
+                        assignment_ind
+                      </i>
+                      Cadastrar Oficial
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../services/api";
 import M from "materialize-css";
+import { Link } from "react-router-dom";
 
 export default class ListarBoletins extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class ListarBoletins extends Component {
   }
 
   render() {
+    const { editarId } = this.props;
     return (
       <div className="container">
         <p className="titulo">Meus Boletins</p>
@@ -64,6 +66,19 @@ export default class ListarBoletins extends Component {
                     <tr>
                       <td>
                         <b>Envolvidos:</b> {oc.envolvidos}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Link to="/editar">
+                          <button
+                            onClick={editarId(oc.id)}
+                            className="waves-effect waves-light btn blue darken-4"
+                          >
+                            <i class="material-icons left large">edit</i>
+                            Editar
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   </tbody>

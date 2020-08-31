@@ -16,6 +16,7 @@ export default class SegundoPasso extends Component {
 
     return (
       <div className="container">
+        <p className="titulo">Irradiação:</p>
         <div className="section">
           <div className="progress">
             <div

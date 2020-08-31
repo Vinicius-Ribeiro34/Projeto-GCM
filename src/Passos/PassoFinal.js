@@ -5,7 +5,6 @@ import axios from "axios";
 import PopUp from "../components/PopUp";
 import { Link } from "react-router-dom";
 
-
 export default class PassoFinal extends Component {
   state = {
     ocorrencia: {},
@@ -54,6 +53,7 @@ export default class PassoFinal extends Component {
 
     return (
       <div className="container">
+        <p className="titulo">Revisão:</p>
         <div className="section">
           <div className="progress">
             <div

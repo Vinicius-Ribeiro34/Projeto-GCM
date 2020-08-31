@@ -14,11 +14,12 @@ export default class PrimeiroPasso extends Component {
     return (
       <div className="container">
         <div className="section">
+        <p className="titulo">Dados Gerais:</p>
           <div className="progress">
             <div
               className="determinate blue darken-3"
               style={{ width: "16%" }}
-            ></div>
+            />
           </div>
         </div>
         <div className="divider"></div>
