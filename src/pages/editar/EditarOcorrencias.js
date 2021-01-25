@@ -123,6 +123,21 @@ export default class EditarOcorrencias extends Component {
               </select>
             </div>
           </div>
+
+          <div className="row">
+            <div className="input-field col s10 offset-s1">
+                <textarea
+                  name="relatorioDaGCM"
+                  id="relatorioDaGCM"
+                  type="text"
+                  className="materialize-textarea"
+                  onChange={handleChange("relatorioDaGCM")}
+                  value={boletim.relatorioDaGCM}
+                  required
+                />
+                <label htmlFor="relatorioDaGCM">Relatorio GCM</label>
+              </div>
+          </div>
         </form>
       </div>
     );

@@ -130,6 +130,20 @@ export default class TerceiroPasso extends Component {
               </div>
             </div>
             <div className="row">
+              <div className="input-field col s8 offset-s2">
+                <textarea
+                  name="relatorioDaGCM"
+                  id="relatorioDaGCM"
+                  type="text"
+                  className="materialize-textarea"
+                  onChange={handleChange("relatorioDaGCM")}
+                  value={values.relatorioDaGCM}
+                  required
+                />
+                <label htmlFor="local">Relatorio</label>
+              </div>
+            </div>
+            <div className="row">
               <button
                 onClick={this.back}
                 className="waves-effect waves-light btn blue darken-4 col s3 offset-s2"

@@ -58,6 +58,13 @@ export default class TableOcorrencia extends Component {
                 <strong>{this.state.bairro.nome}</strong>
               </td>
             </tr>
+            <tr>
+              <td>Relatorio GCM:</td>
+              <td style={{ textAlign: 'left' }}>
+                <strong>{values.relatorioDaGCM}</strong>
+              </td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </Fragment>
