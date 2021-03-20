@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { add } from "../services/ocorrencia";
-import Table from "../components/Table";
-import axios from "axios";
-import PopUp from "../components/PopUp";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { add } from '../services/ocorrencia';
+import Table from '../components/Table';
+import api from '../services/api';
+import PopUp from '../components/PopUp';
+import { Link } from 'react-router-dom';
 
 export default class PassoFinal extends Component {
   state = {
@@ -19,7 +19,7 @@ export default class PassoFinal extends Component {
     const online = this.props.online;
     if (online === false) {
       add(this.props.values);
-      PopUp.exibeMensagem("success", "Ocorrência Registrada");
+      PopUp.exibeMensagem('success', 'Ocorrência Registrada');
     } else {
       this.boletimPost();
     }
@@ -31,19 +31,19 @@ export default class PassoFinal extends Component {
   };
 
   boletimPost() {
-    const token = window.localStorage.getItem("token");
-    axios
-      .post("https://gcm-mogi.herokuapp.com/boletins", this.props.values, {
+    const token = window.localStorage.getItem('token');
+    api
+      .post('boletins', this.props.values, {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: 'Bearer ' + token,
         },
       })
       .then((response) => {
-        PopUp.exibeMensagem("success", "Ocorrência Registrada");
+        PopUp.exibeMensagem('success', 'Ocorrência Registrada');
         console.log(response);
       })
       .catch((error) => {
-        PopUp.exibeMensagem("error", "Erro ao Registrar");
+        PopUp.exibeMensagem('error', 'Erro ao Registrar');
         console.log(error.response);
       });
   }
@@ -58,7 +58,7 @@ export default class PassoFinal extends Component {
           <div className="progress">
             <div
               className="determinate blue darken-3"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
             ></div>
           </div>
         </div>

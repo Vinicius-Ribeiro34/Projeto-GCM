@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from "react";
-import axios from "axios";
-import M from "materialize-css";
-import EditarOcorrencias from "./EditarOcorrencias";
-import EditarEnvolvidos from "./EditarEnvolvidos";
-import EditarVeiculos from "./EditarVeiculos";
-import EditarIrradiacao from "./EditarIrradiacao";
-import EditarGerais from "./EditarGerais";
-import EditarCompleto from "./EditarCompleto";
-import PopUp from "../../components/PopUp";
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import api from '../../services/api';
+import M from 'materialize-css';
+import EditarOcorrencias from './EditarOcorrencias';
+import EditarEnvolvidos from './EditarEnvolvidos';
+import EditarVeiculos from './EditarVeiculos';
+import EditarIrradiacao from './EditarIrradiacao';
+import EditarGerais from './EditarGerais';
+import EditarCompleto from './EditarCompleto';
+import PopUp from '../../components/PopUp';
+import { Link } from 'react-router-dom';
 
 export default class Editar extends Component {
   constructor(props) {
@@ -27,12 +27,12 @@ export default class Editar extends Component {
   }
 
   componentDidMount() {
-    const token = window.localStorage.getItem("token");
+    const token = window.localStorage.getItem('token');
 
-    axios
-      .get("https://gcm-mogi.herokuapp.com/boletins/" + this.props.id, {
+    api
+      .get('boletins/' + this.props.id, {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: 'Bearer ' + token,
         },
       })
       .then((res) => {
@@ -65,19 +65,19 @@ export default class Editar extends Component {
       envolvidos: this.state.envolvidos,
       bairro: this.state.bairros,
     };
-    const token = window.localStorage.getItem("token");
+    const token = window.localStorage.getItem('token');
 
-    axios
-      .put("https://gcm-mogi.herokuapp.com/boletins/" + this.props.id, final, {
+    api
+      .put('boletins/' + this.props.id, final, {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: 'Bearer ' + token,
         },
       })
       .then(() => {
-        PopUp.exibeMensagem("success", "Boletim Editado");
+        PopUp.exibeMensagem('success', 'Boletim Editado');
       })
       .catch((err) => {
-        PopUp.exibeMensagem("erros", "Erro ao editar boletim");
+        PopUp.exibeMensagem('erros', 'Erro ao editar boletim');
         console.log(err);
       });
   }
@@ -114,7 +114,7 @@ export default class Editar extends Component {
   handleEnvolvidos = (input, index) => (e) => {
     const envolvidosUpdate = this.state.envolvidos.slice();
 
-    if (e.target.type === "checkbox") {
+    if (e.target.type === 'checkbox') {
       const value = e.target.checked;
       envolvidosUpdate[index] = {
         ...envolvidosUpdate[index],
@@ -174,13 +174,13 @@ export default class Editar extends Component {
 
   identificadorInt(value) {
     const campos = [
-      "numTalao",
-      "viatura",
-      "numeroDaOcorrencia",
-      "kmIrradiacao",
-      "kmLocal",
-      "kmPrimeiroTermino",
-      "kmSegundoTermino",
+      'numTalao',
+      'viatura',
+      'numeroDaOcorrencia',
+      'kmIrradiacao',
+      'kmLocal',
+      'kmPrimeiroTermino',
+      'kmSegundoTermino',
     ];
 
     return !(campos.indexOf(value) === -1);

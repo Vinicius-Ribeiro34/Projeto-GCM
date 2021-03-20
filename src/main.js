@@ -1,29 +1,30 @@
-import React, { Component } from "react";
-import TelaInicial from "./pages/TelaInicial";
-import BuscarOcorrencia from "./pages/BuscarOcorrencia";
-import ListarBoletins from "./pages/ListarBoletins";
-import MeusBoletins from "./pages/MeusBoletins";
-import PopUp from "./components/PopUp";
-import { addBairros, getBairros } from "./services/bairros";
-import { addCodNat, getCodNat } from "./services/codNat";
-import Indicadores from "./pages/Indicadores";
-import IndicadoresRegiao from "./pages/IndicadoresRegiao";
-import IndicadoresOcorrencias from "./pages/IndicadoresOcorrencias";
-import Header from "./components/Header";
-import { BrowserRouter, Routes, Navigate } from "react-router-dom";
-import Registra from "./pages/Registra";
-import Login from "./login/Login";
-import Cadastro from "./login/Cadastro";
-import Route from "./routes/Route";
-import api from "./services/api";
-import Editar from "./pages/editar/Editar";
+import React, { Component } from 'react';
+import TelaInicial from './pages/TelaInicial';
+import BuscarOcorrencia from './pages/BuscarOcorrencia';
+import ListarBoletins from './pages/ListarBoletins';
+import MeusBoletins from './pages/MeusBoletins';
+import PopUp from './components/PopUp';
+import { addBairros, getBairros } from './services/bairros';
+import { addCodNat, getCodNat } from './services/codNat';
+import Indicadores from './pages/Indicadores';
+import IndicadoresRegiao from './pages/IndicadoresRegiao';
+import IndicadoresOcorrencias from './pages/IndicadoresOcorrencias';
+import Header from './components/Header';
+import { BrowserRouter, Routes, Navigate } from 'react-router-dom';
+import Registra from './pages/Registra';
+import Login from './login/Login';
+import Cadastro from './login/Cadastro';
+import Route from './routes/Route';
+import api from './services/api';
+import Editar from './pages/editar/Editar';
+import VisualizarBoletim from './pages/VisualizarBoletim';
 
 export default class Main extends Component {
   state = {
     step: 1,
 
     online: true,
-    token: "",
+    token: '',
     oficial: {},
 
     bairros: [],
@@ -46,18 +47,18 @@ export default class Main extends Component {
     if (this.state.online === false) return <Navigate to="/" />;
 
     this.setState({
-      token: window.localStorage.getItem("token"),
+      token: window.localStorage.getItem('token'),
     });
 
-    window.addEventListener("online", this.online);
-    window.addEventListener("offline", this.offline);
+    window.addEventListener('online', this.online);
+    window.addEventListener('offline', this.offline);
 
     if (this.state.online === true) {
       getCodNat((cod) => {
         if (cod.length === 0) {
           this.fetchOcorrencias();
         } else {
-          console.log("Banco existente");
+          console.log('Banco existente');
         }
       });
 
@@ -65,7 +66,7 @@ export default class Main extends Component {
         if (bairro.length === 0) {
           this.fetchBairros();
         } else {
-          console.log("Banco existente");
+          console.log('Banco existente');
         }
       });
     }
@@ -73,16 +74,16 @@ export default class Main extends Component {
 
   editarId = (value) => (e) => {
     this.setState({
-      id: value
+      id: value,
     });
-  }
+  };
 
   async setOficial() {
     try {
-      const token = window.localStorage.getItem("token");
-      const response = await api.get("oficiais/meus-dados", {
+      const token = window.localStorage.getItem('token');
+      const response = await api.get('oficiais/meus-dados', {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: 'Bearer ' + token,
         },
       });
 
@@ -96,9 +97,9 @@ export default class Main extends Component {
 
   fetchBairros() {
     api
-      .get("bairros", {
+      .get('bairros', {
         headers: {
-          Authorization: "Bearer " + this.state.token,
+          Authorization: 'Bearer ' + this.state.token,
         },
       })
       .then((res) => {
@@ -114,7 +115,7 @@ export default class Main extends Component {
 
   fetchOcorrencias() {
     api
-      .get("ocorrencias")
+      .get('ocorrencias')
       .then((res) => {
         this.setState({
           ocorrenciasOnline: res.data,
@@ -139,21 +140,14 @@ export default class Main extends Component {
   };
 
   online = () => {
-    PopUp.exibeMensagem("success", "Você está online");
+    PopUp.exibeMensagem('success', 'Você está online');
     this.setState({
       online: true,
     });
-
-    // get((ocorrencia) => {
-    //   this.setState({
-    //     getOcorrencias: ocorrencia,
-    //   });
-    //   this.boletimPost();
-    // });
   };
 
   offline = () => {
-    PopUp.exibeMensagem("error", "Você está offline");
+    PopUp.exibeMensagem('error', 'Você está offline');
     this.setState({
       online: false,
     });
@@ -211,7 +205,7 @@ export default class Main extends Component {
               path="/login"
               element={<Login online={this.state.online} />}
               isPrivate={false}
-              redirectTo={"/registrar-ocorrencia"}
+              redirectTo={'/registrar-ocorrencia'}
             />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/" element={<TelaInicial />} />
@@ -229,9 +223,17 @@ export default class Main extends Component {
             />
             <Route
               path="/buscar-ocorrencia"
-              element={<BuscarOcorrencia online={this.state.online} editarId={this.editarId}/>}
+              element={
+                <BuscarOcorrencia
+                  online={this.state.online}
+                  editarId={this.editarId}
+                />
+              }
             />
-            <Route path="/meus-boletins" element={<MeusBoletins editarId={this.editarId}/>} />
+            <Route
+              path="/meus-boletins"
+              element={<MeusBoletins editarId={this.editarId} />}
+            />
             <Route path="/listar-boletins" element={<ListarBoletins />} />
             <Route path="/indicadores" element={<Indicadores />} />
             <Route path="/indicadores-regiao" element={<IndicadoresRegiao />} />
@@ -239,7 +241,8 @@ export default class Main extends Component {
               path="/indicadores-ocorrencia"
               element={<IndicadoresOcorrencias />}
             />
-            <Route path="/editar" element={<Editar id={this.state.id}/>} />
+            <Route path="/visualizar" element={<VisualizarBoletim />} />
+            <Route path="/editar" element={<Editar id={this.state.id} />} />
             <Route path="*" element={<h1>404: Not Found</h1>} />
           </Routes>
         </BrowserRouter>

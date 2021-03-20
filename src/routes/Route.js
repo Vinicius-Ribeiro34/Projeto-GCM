@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Route, Navigate } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route, Navigate } from 'react-router-dom';
 
 function RouteWrapper({ redirectTo, isPrivate, isOffline, ...rest }) {
-  const authenticated = localStorage.getItem("token");
+  const authenticated = localStorage.getItem('token');
 
-  if (!authenticated && isPrivate) return <Navigate to={"/login"} />;
+  if (!authenticated && isPrivate) return <Navigate to={'/login'} />;
 
   return <Route {...rest} />;
 }
@@ -17,7 +17,7 @@ RouteWrapper.propTypes = {
 };
 
 RouteWrapper.defaultProps = {
-  redirectTo: "/",
+  redirectTo: '/',
   isPrivate: true,
   isOffline: false,
 };

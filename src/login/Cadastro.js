@@ -1,18 +1,20 @@
-import React, { Component } from "react";
-import api from "../services/api";
+import React, { Component } from 'react';
+import api from '../services/api';
 
 class Cadastro extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      login: "",
-      senha: "",
-      nome: "",
-      time: "",
-      viatura: "",
-      email: "",
-      perfis: [],
+      login: '',
+      senha: '',
+      nome: '',
+      time: '',
+      viatura: '',
+      email: '',
+      perfis: ['ADMINISTRATIVO'],
+      sucesso: '',
+      erro: '',
     };
 
     this.userPost = this.userPost.bind(this);
@@ -21,12 +23,12 @@ class Cadastro extends Component {
   handleChange = (e) => {
     const { name, value, type } = e.target;
 
-    if (name === "perfis") {
+    if (name === 'perfis') {
       this.setState({
-        perfis: [...this.state.perfis, value],
+        perfis: [value],
       });
     } else {
-      if (type === "number") {
+      if (type === 'number') {
         this.setState({
           [name]: Number(value),
         });
@@ -41,14 +43,21 @@ class Cadastro extends Component {
   async userPost(e) {
     e.preventDefault();
     try {
-      const token = window.localStorage.getItem("token");
-      const response = await api.post("oficiais", this.state, {
+      const token = window.localStorage.getItem('token');
+      await api.post('oficiais', this.state, {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: 'Bearer ' + token,
         },
       });
-      console.log(response);
+
+      this.setState({
+        sucesso: 'Usuário cadastrado com sucesso!',
+      });
     } catch (err) {
+      this.setState({
+        erro: 'Erro ao cadastrar novo usuário',
+      });
+
       console.log(err.message);
     }
   }
@@ -66,6 +75,7 @@ class Cadastro extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Usuário"
+                required
               />
             </div>
             <div className="input-field col s5">
@@ -75,6 +85,7 @@ class Cadastro extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Senha"
+                required
               />
             </div>
           </div>
@@ -86,6 +97,7 @@ class Cadastro extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Nome"
+                required
               />
             </div>
 
@@ -116,23 +128,33 @@ class Cadastro extends Component {
                 onChange={this.handleChange}
                 type="text"
                 placeholder="Email"
+                required
               />
             </div>
           </div>
           <div className="row">
-          <div className="input-field col s8 offset-s2">
-          <select
-            className="browser-default"
-            onChange={this.handleChange}
-            name="perfis"
-            value={this.state.perfis}
+            <div className="input-field col s8 offset-s2">
+              <select
+                className="browser-default"
+                onChange={this.handleChange}
+                name="perfis"
+                value={this.state.perfis}
+                required
+              >
+                <option value="ADMINISTRATIVO">Administrativo</option>
+                <option value="EM_CAMPO">Campo</option>
+              </select>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="waves-effect waves-light btn blue darken-4 col s3 offset-s2"
           >
-            <option value="ADMINISTRATIVO">Administrativo</option>
-            <option value="EM_CAMPO">Campo</option>
-          </select>
-          </div>
-          </div>
-          <button type="submit" className="waves-effect waves-light btn blue darken-4 col s3 offset-s2">Cadastrar</button>
+            Cadastrar
+          </button>
+          <br /> <br />
+          <p style={{ color: 'green' }}>{this.state.sucesso}</p>
+          <p style={{ color: 'red' }}>{this.state.erro}</p>
         </form>
       </div>
     );

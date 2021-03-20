@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from "react";
-import { getOcorrenciaById } from "../services/ocorrencia";
-import M from "materialize-css";
-import Table from "../components/Table";
-import PopUp from "../components/PopUp";
-import api from "../services/api";
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import { getOcorrenciaById } from '../services/ocorrencia';
+import M from 'materialize-css';
+import Table from '../components/Table';
+import PopUp from '../components/PopUp';
+import api from '../services/api';
+import { Link } from 'react-router-dom';
 
 export default class BuscarOcorrencia extends Component {
   constructor(props) {
@@ -12,9 +12,9 @@ export default class BuscarOcorrencia extends Component {
 
     this.state = {
       ocorrencia: {},
-      id: "",
+      id: '',
       show: 0,
-      token: "",
+      token: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,7 +23,7 @@ export default class BuscarOcorrencia extends Component {
 
   componentDidMount() {
     M.AutoInit();
-    const tokenStorage = window.localStorage.getItem("token");
+    const tokenStorage = window.localStorage.getItem('token');
     this.setState({
       token: tokenStorage,
     });
@@ -42,15 +42,15 @@ export default class BuscarOcorrencia extends Component {
             show: 2,
           });
         } else {
-          PopUp.exibeMensagem("error", "Batata");
+          PopUp.exibeMensagem('error', 'Error');
         }
       }, id);
     } else {
       const id = this.state.id;
       api
-        .get("boletins/" + id, {
+        .get('boletins/' + id, {
           headers: {
-            Authorization: "Bearer " + this.state.token,
+            Authorization: 'Bearer ' + this.state.token,
           },
         })
         .then((res) => {

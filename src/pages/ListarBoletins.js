@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import api from "../services/api";
+import React, { Component } from 'react';
+import api from '../services/api';
 import M from 'materialize-css';
+import { Link } from 'react-router-dom';
 
 export default class ListarBoletins extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class ListarBoletins extends Component {
 
     this.state = {
       ocorrencias: [],
-      ocorrencia: "",
+      ocorrencia: '',
     };
   }
 
@@ -18,11 +19,11 @@ export default class ListarBoletins extends Component {
   }
 
   get() {
-    const token = window.localStorage.getItem("token");
+    const token = window.localStorage.getItem('token');
     api
-      .get("boletins", {
+      .get('boletins', {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: 'Bearer ' + token,
         },
       })
       .then((res) => {
@@ -68,6 +69,12 @@ export default class ListarBoletins extends Component {
                     </tr>
                   </tbody>
                 </table>
+                <br />
+                <Link to={`/visualizar?id=${oc.id}`}>
+                  <button className="waves-effect waves-light btn blue darken-4">
+                    Visualizar
+                  </button>
+                </Link>
                 <br />
                 <br />
                 <div className="divider"></div>

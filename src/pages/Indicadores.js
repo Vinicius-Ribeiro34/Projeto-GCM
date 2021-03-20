@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import M from "materialize-css";
-import { Link } from "react-router-dom";
-import api from "../services/api";
+import React, { Component } from 'react';
+import M from 'materialize-css';
+import { Link } from 'react-router-dom';
+import api from '../services/api';
 
 export default class Indicadores extends Component {
   constructor(props) {
@@ -25,12 +25,12 @@ export default class Indicadores extends Component {
   componentDidMount() {
     M.AutoInit();
 
-    const token = window.localStorage.getItem("token");
+    const token = window.localStorage.getItem('token');
 
     api
-      .get("bairros/top5-com-mais-boletins", {
+      .get('bairros/top5-com-mais-boletins', {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: 'Bearer ' + token,
         },
       })
       .then((res) => {
@@ -40,9 +40,6 @@ export default class Indicadores extends Component {
         console.log(error);
       });
   }
-
-  // onClick={this.indicadoresRegiao}
-  // onClick={this.indicadoresOcorrencias}
 
   render() {
     return (
