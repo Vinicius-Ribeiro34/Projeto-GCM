@@ -24,8 +24,6 @@ export default class PassoFinal extends Component {
       this.boletimPost();
     }
 
-    console.log(this.props.values);
-
     this.props.clearState();
     this.props.resetStep();
   };

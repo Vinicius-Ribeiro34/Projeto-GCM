@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import api from "../services/api";
-import Logo from "../img/logo-gcm.png";
-import { Navigate } from "react-router-dom";
+import React, { Component } from 'react';
+import api from '../services/api';
+import Logo from '../img/logo-gcm.png';
+import { Navigate } from 'react-router-dom';
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      senha: "",
+      email: '',
+      senha: '',
       ok: false,
-      error: "",
+      error: '',
     };
 
     this.userLogin = this.userLogin.bind(this);
@@ -29,11 +29,10 @@ class LoginForm extends Component {
     e.preventDefault();
     try {
       const { email, senha } = this.state;
-      const response = await api.post("login", { email: email, senha: senha });
-      console.log(response);
+      const response = await api.post('login', { email: email, senha: senha });
       const tokenArray = response.headers.authorization;
-      const token = tokenArray.split(" ");
-      window.localStorage.setItem("token", token[1]);
+      const token = tokenArray.split(' ');
+      window.localStorage.setItem('token', token[1]);
       this.setState({
         ok: true,
       });
@@ -41,7 +40,7 @@ class LoginForm extends Component {
       console.log(err.message);
       this.setState({
         ok: false,
-        error: "Dados incorretos",
+        error: 'Dados incorretos',
       });
     }
   }
@@ -84,7 +83,7 @@ class LoginForm extends Component {
 
           <div className="row">
             <div className="offset-s2">
-              <p style={{ color: "red" }}>{this.state.error}</p>
+              <p style={{ color: 'red' }}>{this.state.error}</p>
             </div>
           </div>
           <button
